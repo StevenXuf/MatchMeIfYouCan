@@ -1,0 +1,188 @@
+nuclear accidents
+Related article length: [628, 2282, 178, 143, 155, 185, 139, 519, 343, 186, 1545]
+Unrelated article length: [445, 427, 215, 80, 115, 180, 316, 533, 221, 82, 1304, 422, 457, 278, 770, 627, 125, 434, 546, 291, 157]
+Related title length: [4, 8, 1, 4, 5, 5, 8, 5, 4, 4, 6]
+Unrelated title length: [5, 4, 3, 5, 2, 4, 4, 4, 3, 9, 5, 7, 4, 8, 5, 1, 6, 8, 5, 3, 3]
+nuclear waste
+Related article length: [236, 491, 403, 236, 429, 538, 153, 535, 144, 975]
+Unrelated article length: [879, 240, 287, 611, 70, 381, 171, 260, 629, 97, 127, 407]
+Related title length: [5, 5, 6, 4, 6, 5, 6, 4, 4, 1]
+Unrelated title length: [6, 6, 4, 4, 4, 5, 8, 1, 7, 1, 3, 1]
+environmentalism
+Related article length: [197, 163, 556, 296, 238, 341, 595, 3, 332, 807, 1261]
+Unrelated article length: [215, 107, 487, 477, 233, 449, 620, 283, 443, 707, 289, 582, 447, 120, 619, 822, 696, 1126, 75, 125]
+Related title length: [3, 3, 5, 3, 3, 5, 5, 3, 5, 6, 1]
+Unrelated title length: [1, 2, 4, 3, 6, 5, 4, 4, 1, 3, 4, 3, 5, 3, 3, 2, 3, 5, 1, 1]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.42it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.40it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.41it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.92it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.69it/s]
+  0%|          | 0/85 [00:00<?, ?it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+  1%|          | 1/85 [00:08<11:27,  8.18s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+  2%|▏         | 2/85 [00:20<14:21, 10.38s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+  4%|▎         | 3/85 [00:25<11:02,  8.08s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+  5%|▍         | 4/85 [00:29<08:48,  6.53s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+  6%|▌         | 5/85 [00:34<07:54,  5.94s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+  7%|▋         | 6/85 [00:40<07:40,  5.82s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+  8%|▊         | 7/85 [00:44<07:07,  5.48s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+  9%|▉         | 8/85 [00:49<06:53,  5.37s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 11%|█         | 9/85 [00:55<06:56,  5.48s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 12%|█▏        | 10/85 [01:02<07:11,  5.75s/it]You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset
+Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 13%|█▎        | 11/85 [01:11<08:25,  6.83s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 14%|█▍        | 12/85 [01:15<07:11,  5.90s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 15%|█▌        | 13/85 [01:19<06:32,  5.45s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 16%|█▋        | 14/85 [01:24<06:14,  5.27s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 18%|█▊        | 15/85 [01:28<05:48,  4.97s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 19%|█▉        | 16/85 [01:34<05:50,  5.08s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 20%|██        | 17/85 [01:39<05:56,  5.24s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 21%|██        | 18/85 [01:43<05:32,  4.97s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 22%|██▏       | 19/85 [01:48<05:25,  4.93s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 24%|██▎       | 20/85 [01:52<04:58,  4.59s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 25%|██▍       | 21/85 [02:00<05:51,  5.49s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 26%|██▌       | 22/85 [02:05<05:39,  5.39s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 27%|██▋       | 23/85 [02:10<05:30,  5.32s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 28%|██▊       | 24/85 [02:16<05:29,  5.39s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 29%|██▉       | 25/85 [02:22<05:36,  5.60s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 31%|███       | 26/85 [02:27<05:24,  5.50s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 32%|███▏      | 27/85 [02:33<05:32,  5.73s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 33%|███▎      | 28/85 [02:38<05:15,  5.54s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 34%|███▍      | 29/85 [02:42<04:46,  5.12s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 35%|███▌      | 30/85 [02:46<04:15,  4.65s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 36%|███▋      | 31/85 [02:52<04:36,  5.12s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 38%|███▊      | 32/85 [02:59<05:03,  5.73s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 39%|███▉      | 33/85 [03:04<04:44,  5.47s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 40%|████      | 34/85 [03:11<04:54,  5.77s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 41%|████      | 35/85 [03:17<05:01,  6.03s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 42%|████▏     | 36/85 [03:23<04:46,  5.85s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 44%|████▎     | 37/85 [03:29<04:50,  6.06s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 45%|████▍     | 38/85 [03:36<04:52,  6.22s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 46%|████▌     | 39/85 [03:42<04:44,  6.18s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 47%|████▋     | 40/85 [03:50<04:59,  6.65s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 48%|████▊     | 41/85 [03:58<05:16,  7.20s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 49%|████▉     | 42/85 [04:04<04:54,  6.85s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 51%|█████     | 43/85 [04:14<05:23,  7.70s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 52%|█████▏    | 44/85 [04:21<05:04,  7.42s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 53%|█████▎    | 45/85 [04:26<04:26,  6.66s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 54%|█████▍    | 46/85 [04:30<03:56,  6.05s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 55%|█████▌    | 47/85 [04:36<03:51,  6.09s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 56%|█████▋    | 48/85 [04:43<03:51,  6.25s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 58%|█████▊    | 49/85 [04:47<03:23,  5.66s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 59%|█████▉    | 50/85 [04:53<03:15,  5.58s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 60%|██████    | 51/85 [05:00<03:27,  6.10s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 61%|██████    | 52/85 [05:06<03:24,  6.20s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 62%|██████▏   | 53/85 [05:12<03:16,  6.14s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 64%|██████▎   | 54/85 [05:18<03:00,  5.82s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 65%|██████▍   | 55/85 [05:23<02:47,  5.59s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 66%|██████▌   | 56/85 [05:26<02:27,  5.09s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 67%|██████▋   | 57/85 [05:32<02:25,  5.21s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 68%|██████▊   | 58/85 [05:36<02:09,  4.81s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 69%|██████▉   | 59/85 [05:42<02:16,  5.26s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 71%|███████   | 60/85 [05:49<02:24,  5.76s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 72%|███████▏  | 61/85 [05:55<02:20,  5.85s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 73%|███████▎  | 62/85 [06:01<02:11,  5.74s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 74%|███████▍  | 63/85 [06:07<02:08,  5.84s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 75%|███████▌  | 64/85 [06:13<02:05,  5.96s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 76%|███████▋  | 65/85 [06:19<02:00,  6.04s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 78%|███████▊  | 66/85 [06:27<02:02,  6.46s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 79%|███████▉  | 67/85 [06:31<01:46,  5.94s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 80%|████████  | 68/85 [06:40<01:53,  6.65s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 81%|████████  | 69/85 [06:45<01:38,  6.18s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 82%|████████▏ | 70/85 [06:53<01:43,  6.92s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 84%|████████▎ | 71/85 [07:01<01:39,  7.09s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 85%|████████▍ | 72/85 [07:06<01:25,  6.59s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 86%|████████▌ | 73/85 [07:14<01:22,  6.88s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 87%|████████▋ | 74/85 [07:19<01:09,  6.33s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 88%|████████▊ | 75/85 [07:25<01:02,  6.24s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 89%|████████▉ | 76/85 [07:31<00:54,  6.11s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 91%|█████████ | 77/85 [07:37<00:50,  6.29s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 92%|█████████▏| 78/85 [07:45<00:45,  6.54s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 93%|█████████▎| 79/85 [07:50<00:37,  6.30s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 94%|█████████▍| 80/85 [07:56<00:30,  6.07s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 95%|█████████▌| 81/85 [08:02<00:24,  6.24s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 96%|█████████▋| 82/85 [08:08<00:18,  6.09s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 98%|█████████▊| 83/85 [08:19<00:15,  7.56s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+ 99%|█████████▉| 84/85 [08:24<00:06,  6.65s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+100%|██████████| 85/85 [08:29<00:00,  6.15s/it]100%|██████████| 85/85 [08:29<00:00,  5.99s/it]
+0 11
+current range: range(1, 12)
+Article 5 with score 0.3464
+Article 7 with score 0.2169
+Article 42 with score 0.2132
+Article 10 with score 0.1865
+Article 4 with score 0.1291
+Article 49 with score 0.1132
+Article 3 with score 0.1085
+Article 53 with score 0.1072
+Article 38 with score 0.1000
+Article 41 with score 0.0976
+Recall: 45.45%
+Precision: 50.00%
+11 21
+current range: range(12, 22)
+Article 60 with score 0.2374
+Article 61 with score 0.2052
+Article 64 with score 0.1302
+Article 23 with score 0.1048
+Article 62 with score 0.1005
+Article 19 with score 0.0894
+Article 57 with score 0.0877
+Article 80 with score 0.0000
+Article 77 with score 0.0000
+Article 76 with score 0.0000
+Recall: 10.00%
+Precision: 10.00%
+21 32
+current range: range(22, 33)
+Article 82 with score 0.2188
+Article 67 with score 0.1961
+Article 83 with score 0.1890
+Article 85 with score 0.1873
+Article 74 with score 0.1667
+Article 30 with score 0.1667
+Article 79 with score 0.1562
+Article 72 with score 0.1361
+Article 66 with score 0.1265
+Article 70 with score 0.1236
+Recall: 9.09%
+Precision: 10.00%
+0 11
+current range: range(1, 12)
+Article 5 with score 0.2957
+Article 7 with score 0.1869
+Article 42 with score 0.1808
+Article 10 with score 0.1796
+Article 4 with score 0.1087
+Article 49 with score 0.1022
+Article 53 with score 0.0926
+Article 41 with score 0.0886
+Article 38 with score 0.0873
+Article 3 with score 0.0865
+Recall: 45.45%
+Precision: 50.00%
+11 21
+current range: range(12, 22)
+Article 61 with score 0.2263
+Article 60 with score 0.2169
+Article 64 with score 0.1240
+Article 23 with score 0.1114
+Article 62 with score 0.1084
+Article 19 with score 0.1065
+Article 57 with score 0.0881
+Article 80 with score 0.0000
+Article 77 with score 0.0000
+Article 76 with score 0.0000
+Recall: 10.00%
+Precision: 10.00%
+21 32
+current range: range(22, 33)
+Article 30 with score 0.2827
+Article 83 with score 0.1355
+Article 29 with score 0.1306
+Article 82 with score 0.1261
+Article 67 with score 0.1104
+Article 85 with score 0.0983
+Article 79 with score 0.0934
+Article 74 with score 0.0927
+Article 72 with score 0.0828
+Article 66 with score 0.0807
+Recall: 18.18%
+Precision: 20.00%

@@ -1,0 +1,41 @@
+/mnt/tier2/project/p200630/my_env/lib/python3.11/site-packages/transformers/utils/hub.py:128: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+[nltk_data] Downloading package stopwords to
+[nltk_data]     /home/users/u101139/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+nuclear accidents
+nuclear waste
+environmentalism
+reshape position embedding from 576 to 196
+load checkpoint from https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_retrieval_coco.pth
+reshape position embedding from 576 to 196
+load checkpoint from https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_retrieval_coco.pth
+0 11
+current range: range(1, 12)
+Article 3 with score 0.7683
+Article 37 with score 0.7123
+Article 10 with score 0.7006
+Article 53 with score 0.6988
+Article 48 with score 0.6801
+Recall: 18.18%
+Precision: 40.00%
+11 21
+current range: range(12, 22)
+Article 48 with score 0.7486
+Article 58 with score 0.6554
+Article 3 with score 0.6443
+Article 53 with score 0.6177
+Article 62 with score 0.5985
+Recall: 0.00%
+Precision: 0.00%
+21 32
+current range: range(22, 33)
+Article 67 with score 0.9066
+Article 85 with score 0.8753
+Article 66 with score 0.8753
+Article 84 with score 0.8752
+Article 26 with score 0.8675
+Recall: 9.09%
+Precision: 20.00%
+Avg recall: 9.09%
+Avg precision: 20.00%

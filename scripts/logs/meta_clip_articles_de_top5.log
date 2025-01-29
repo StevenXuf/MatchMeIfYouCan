@@ -1,0 +1,38 @@
+/mnt/tier2/project/p200630/my_env/lib/python3.11/site-packages/transformers/utils/hub.py:128: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+[nltk_data] Downloading package stopwords to
+[nltk_data]     /home/users/u101139/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+nuclear accidents
+nuclear waste
+environmentalism
+It looks like you are trying to rescale already rescaled images. If the input images have pixel values between 0 and 1, set `do_rescale=False` to avoid rescaling them again.
+0 11
+current range: range(1, 12)
+Article 42 with score 0.7699
+Article 68 with score 0.7517
+Article 45 with score 0.7413
+Article 65 with score 0.7397
+Article 53 with score 0.7395
+Recall: 0.00%
+Precision: 0.00%
+11 21
+current range: range(12, 22)
+Article 42 with score 0.7729
+Article 65 with score 0.7645
+Article 68 with score 0.7614
+Article 45 with score 0.7599
+Article 58 with score 0.7535
+Recall: 0.00%
+Precision: 0.00%
+21 32
+current range: range(22, 33)
+Article 29 with score 0.8557
+Article 68 with score 0.8538
+Article 30 with score 0.8511
+Article 73 with score 0.8488
+Article 42 with score 0.8464
+Recall: 18.18%
+Precision: 40.00%
+Avg recall: 6.06%
+Avg precision: 13.33%

@@ -1,0 +1,53 @@
+/mnt/tier2/project/p200630/my_env/lib/python3.11/site-packages/transformers/utils/hub.py:128: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+[nltk_data] Downloading package stopwords to
+[nltk_data]     /home/users/u101139/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+nuclear accidents
+nuclear waste
+environmentalism
+  0%|          | 0/85 [00:00<?, ?it/s]  1%|          | 1/85 [00:00<00:51,  1.64it/s]  2%|▏         | 2/85 [00:00<00:31,  2.60it/s]  9%|▉         | 8/85 [00:00<00:06, 12.07it/s] 13%|█▎        | 11/85 [00:01<00:05, 12.38it/s] 16%|█▋        | 14/85 [00:01<00:04, 15.24it/s] 20%|██        | 17/85 [00:01<00:03, 17.61it/s] 25%|██▍       | 21/85 [00:01<00:03, 18.11it/s] 29%|██▉       | 25/85 [00:01<00:02, 21.54it/s] 33%|███▎      | 28/85 [00:01<00:02, 22.71it/s] 36%|███▋      | 31/85 [00:01<00:02, 23.82it/s] 40%|████      | 34/85 [00:02<00:02, 19.92it/s] 47%|████▋     | 40/85 [00:02<00:01, 26.08it/s] 51%|█████     | 43/85 [00:02<00:01, 24.21it/s] 54%|█████▍    | 46/85 [00:02<00:01, 24.66it/s] 58%|█████▊    | 49/85 [00:02<00:01, 22.39it/s] 61%|██████    | 52/85 [00:02<00:01, 22.23it/s] 65%|██████▍   | 55/85 [00:03<00:01, 22.77it/s] 69%|██████▉   | 59/85 [00:03<00:01, 24.97it/s] 73%|███████▎  | 62/85 [00:03<00:00, 26.02it/s] 79%|███████▉  | 67/85 [00:03<00:00, 31.85it/s] 84%|████████▎ | 71/85 [00:03<00:00, 29.52it/s] 88%|████████▊ | 75/85 [00:03<00:00, 26.22it/s] 92%|█████████▏| 78/85 [00:03<00:00, 25.54it/s] 95%|█████████▌| 81/85 [00:04<00:00, 23.01it/s] 99%|█████████▉| 84/85 [00:04<00:00, 19.75it/s]100%|██████████| 85/85 [00:04<00:00, 20.01it/s]
+0 11
+current range: range(1, 12)
+Article 39 with score 0.7116
+Article 41 with score 0.3113
+Article 44 with score 0.3112
+Article 42 with score 0.3015
+Article 53 with score 0.2324
+Article 36 with score 0.2236
+Article 37 with score 0.2154
+Article 34 with score 0.2086
+Article 35 with score 0.2078
+Article 49 with score 0.1698
+Recall: 0.00%
+Precision: 0.00%
+11 21
+current range: range(12, 22)
+Article 60 with score 0.3273
+Article 12 with score 0.3205
+Article 59 with score 0.2571
+Article 14 with score 0.2396
+Article 56 with score 0.2360
+Article 16 with score 0.2017
+Article 18 with score 0.1879
+Article 20 with score 0.1809
+Article 13 with score 0.1705
+Article 58 with score 0.1667
+Recall: 60.00%
+Precision: 60.00%
+21 32
+current range: range(22, 33)
+Article 67 with score 0.1915
+Article 66 with score 0.1772
+Article 79 with score 0.1523
+Article 85 with score 0.1223
+Article 70 with score 0.1088
+Article 74 with score 0.1042
+Article 73 with score 0.0907
+Article 82 with score 0.0879
+Article 30 with score 0.0860
+Article 80 with score 0.0817
+Recall: 9.09%
+Precision: 10.00%
+Avg recall: 23.03
+Avg precision: 23.33

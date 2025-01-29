@@ -1,0 +1,61 @@
+nuclear accidents
+Related article length: [628, 2282, 178, 143, 155, 185, 139, 519, 343, 186, 1545]
+Unrelated article length: [445, 427, 215, 80, 115, 180, 316, 533, 221, 82, 1304, 422, 457, 278, 770, 627, 125, 434, 546, 291, 157]
+Related title length: [4, 8, 1, 4, 5, 5, 8, 5, 4, 4, 6]
+Unrelated title length: [5, 4, 3, 5, 2, 4, 4, 4, 3, 9, 5, 7, 4, 8, 5, 1, 6, 8, 5, 3, 3]
+nuclear waste
+Related article length: [236, 491, 403, 236, 429, 538, 153, 535, 144, 975]
+Unrelated article length: [879, 240, 287, 611, 70, 381, 171, 260, 629, 97, 127, 407]
+Related title length: [5, 5, 6, 4, 6, 5, 6, 4, 4, 1]
+Unrelated title length: [6, 6, 4, 4, 4, 5, 8, 1, 7, 1, 3, 1]
+environmentalism
+Related article length: [197, 163, 556, 296, 238, 341, 595, 3, 332, 807, 1261]
+Unrelated article length: [215, 107, 487, 477, 233, 449, 620, 283, 443, 707, 289, 582, 447, 120, 619, 822, 696, 1126, 75, 125]
+Related title length: [3, 3, 5, 3, 3, 5, 5, 3, 5, 6, 1]
+Unrelated title length: [1, 2, 4, 3, 6, 5, 4, 4, 1, 3, 4, 3, 5, 3, 3, 2, 3, 5, 1, 1]
+reshape position embedding from 576 to 196
+load checkpoint from https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_retrieval_coco.pth
+reshape position embedding from 576 to 196
+load checkpoint from https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_retrieval_coco.pth
+0 11
+current range: range(1, 12)
+Article 3 with score 0.7683
+Article 37 with score 0.7123
+Article 10 with score 0.7006
+Article 53 with score 0.6988
+Article 48 with score 0.6801
+Article 41 with score 0.6645
+Article 69 with score 0.6444
+Article 21 with score 0.6301
+Article 1 with score 0.6218
+Article 35 with score 0.5925
+Recall: 27.27%
+Precision: 30.00%
+11 21
+current range: range(12, 22)
+Article 48 with score 0.7486
+Article 58 with score 0.6554
+Article 3 with score 0.6443
+Article 53 with score 0.6177
+Article 62 with score 0.5985
+Article 63 with score 0.5755
+Article 12 with score 0.5694
+Article 37 with score 0.5659
+Article 41 with score 0.5636
+Article 65 with score 0.5616
+Recall: 10.00%
+Precision: 10.00%
+21 32
+current range: range(22, 33)
+Article 67 with score 0.9066
+Article 85 with score 0.8753
+Article 66 with score 0.8753
+Article 84 with score 0.8752
+Article 26 with score 0.8675
+Article 72 with score 0.8364
+Article 79 with score 0.8266
+Article 68 with score 0.8229
+Article 83 with score 0.8085
+Article 77 with score 0.8032
+Recall: 9.09%
+Precision: 10.00%

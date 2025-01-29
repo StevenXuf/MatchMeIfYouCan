@@ -1,0 +1,149 @@
+nuclear accidents
+Related article length: [628, 2282, 178, 143, 155, 185, 139, 519, 343, 186, 1545]
+Unrelated article length: [445, 427, 215, 80, 115, 180, 316, 533, 221, 82, 1304, 422, 457, 278, 770, 627, 125, 434, 546, 291, 157]
+Related title length: [4, 8, 1, 4, 5, 5, 8, 5, 4, 4, 6]
+Unrelated title length: [5, 4, 3, 5, 2, 4, 4, 4, 3, 9, 5, 7, 4, 8, 5, 1, 6, 8, 5, 3, 3]
+nuclear waste
+Related article length: [236, 491, 403, 236, 429, 538, 153, 535, 144, 975]
+Unrelated article length: [879, 240, 287, 611, 70, 381, 171, 260, 629, 97, 127, 407]
+Related title length: [5, 5, 6, 4, 6, 5, 6, 4, 4, 1]
+Unrelated title length: [6, 6, 4, 4, 4, 5, 8, 1, 7, 1, 3, 1]
+environmentalism
+Related article length: [197, 163, 556, 296, 238, 341, 595, 3, 332, 807, 1261]
+Unrelated article length: [215, 107, 487, 477, 233, 449, 620, 283, 443, 707, 289, 582, 447, 120, 619, 822, 696, 1126, 75, 125]
+Related title length: [3, 3, 5, 3, 3, 5, 5, 3, 5, 6, 1]
+Unrelated title length: [1, 2, 4, 3, 6, 5, 4, 4, 1, 3, 4, 3, 5, 3, 3, 2, 3, 5, 1, 1]
+reshape position embedding from 576 to 196
+load checkpoint from https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_retrieval_coco.pth
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+reshape position embedding from 576 to 196
+load checkpoint from https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_retrieval_coco.pth
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+torch.Size([1, 3, 224, 224])
+0 11
+current range: range(1, 12)
+Article 2 with score 0.5428
+Article 53 with score 0.5354
+Article 41 with score 0.5338
+Article 69 with score 0.5317
+Article 1 with score 0.5309
+Article 34 with score 0.5205
+Article 38 with score 0.4993
+Article 49 with score 0.4986
+Article 9 with score 0.4933
+Article 42 with score 0.4903
+Recall: 27.27%
+Precision: 30.00%
+11 21
+current range: range(12, 22)
+Article 41 with score 0.5021
+Article 2 with score 0.4894
+Article 34 with score 0.4876
+Article 1 with score 0.4820
+Article 56 with score 0.4793
+Article 63 with score 0.4793
+Article 58 with score 0.4756
+Article 49 with score 0.4706
+Article 53 with score 0.4670
+Article 48 with score 0.4662
+Recall: 0.00%
+Precision: 0.00%
+21 32
+current range: range(22, 33)
+Article 28 with score 0.7686
+Article 82 with score 0.7591
+Article 19 with score 0.7517
+Article 68 with score 0.7407
+Article 22 with score 0.7304
+Article 27 with score 0.7301
+Article 77 with score 0.7228
+Article 85 with score 0.7190
+Article 34 with score 0.7151
+Article 57 with score 0.7143
+Recall: 27.27%
+Precision: 30.00%
