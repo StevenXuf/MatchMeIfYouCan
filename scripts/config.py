@@ -5,21 +5,18 @@ anno_file='../data/poster_anno.xlsx'
 english_topics=[
     'nuclear accidents',
     'nuclear waste',
-    'environmentalism'
+    'environmentalism',
+    'protest'
     ]
 
-english_queries=[
-    'Nuclear Accidents',
-    'Nuclear Waste',
-    'Environmentalism, Deforestation'
-    ]
 form_en='An article'
-english_prompts=[f'{form_en} concerning {query.lower()}' for query in english_queries]
+english_prompts=[f'{form_en} concerning {query.lower()}' for query in english_topics]
 
 german_queries=[
     'Störfall',
     'Atomabfall',
-    'Umweltschutz, Waldsterben'
+    'Umweltschutz',
+    'Protest'
     ]
 form_de='Ein Artikel'
 german_prompts=[f"{form_de} über {query}" for query in german_queries]

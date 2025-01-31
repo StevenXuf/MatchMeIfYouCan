@@ -3,11 +3,9 @@ import matplotlib.pyplot as plt
 
 import os
 import hashlib
-import imagehash
 
 from PIL import Image
 import torch
-from torchvision import transforms
 
 def get_valid_paths(path):
     subpaths=[]
@@ -44,7 +42,7 @@ def compute_image_hash(img_path,algorithm="md5"):
     return hash_func.hexdigest()
 
 def find_duplicates(valid_paths,dtype='text'):
-    contents=[]
+    contents={}
     duplicates=[]
 
     if dtype=='text':
@@ -52,7 +50,7 @@ def find_duplicates(valid_paths,dtype='text'):
             with open(txt_path,'r') as txt_file:
                 txt=txt_file.read()
                 if txt not in contents:
-                    contents.append(txt)
+                    contents[txt]=txt_path
                 else:
                     duplicates.append(txt_path)
     elif dtype=='image':
@@ -60,7 +58,7 @@ def find_duplicates(valid_paths,dtype='text'):
             img_hash=compute_image_hash(img_path)
 
             if img_hash not in contents:
-                contents.append(img_hash)
+                contents[img_hash]=img_path
             else:
                 duplicates.append(img_path)
     else:
@@ -70,7 +68,7 @@ def find_duplicates(valid_paths,dtype='text'):
 
     return duplicates
 
-def deduplicates(path):
+def get_deduped_path(path):
     valid_img_paths,valid_txt_paths=get_valid_paths(path)
     print(f'Total number of images: {len(valid_img_paths)}')
 
@@ -82,6 +80,30 @@ def deduplicates(path):
 
     return deduplicated_img_paths
 
+def create_clean_data(deduped_paths):
+    if not os.path.exists(laka_config.deduped_dir):
+        os.makedirs(laka_config.deduped_dir)
+    
+    subfolder_names=[entry.name for entry in os.scandir(laka_config.dir_name) if entry.is_dir()]
+    for subfolder in subfolder_names:
+        os.makedirs(os.path.join(laka_config.deduped_dir,subfolder),exist_ok=True)
+
+    for i,path in enumerate(deduped_paths):
+        file_name=str(i)
+        current_folder=os.path.join(laka_config.deduped_dir,path.split('/')[-2])
+        img=Image.open(path).convert("RGB")
+        _=img.save(os.path.join(current_folder,f'{file_name}.png'))
+
+        txt_path,extension=os.path.splitext(path)
+        txt_path+='.txt'
+        with open(txt_path,'r') as txt_file:
+            txt=txt_file.read()
+        with open(os.path.join(current_folder,f'{file_name}.txt'),'w') as outfile:
+            outfile.write(txt)
+    
+    print(f'Total file saved: {i+1}.')
+    print('Data cleaned.')
+        
 def plot_duplicates(pairs,sub_size=3):
     n_pairs=len(pairs)
     fig,axes=plt.subplots(n_pairs,2,figsize=(2*sub_size,n_pairs*sub_size))
@@ -99,5 +121,5 @@ def plot_duplicates(pairs,sub_size=3):
 
 if __name__ == "__main__":
     dir_name=laka_config.dir_name
-    deduplicates(dir_name)
-
+    deduped_paths=get_deduped_path(dir_name)
+    create_clean_data(deduped_paths)

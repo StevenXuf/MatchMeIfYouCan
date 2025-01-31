@@ -38,6 +38,9 @@ def get_contents(topics):
         elif topic=='nuclear waste':
             df_related=pd.read_csv(path+'/waste_related.csv',sep=';',header=0)
             df_unrelated=pd.read_csv(path+'/waste_unrelated.csv',sep=';',header=0)
+        elif topic=='protest':
+            df_related=pd.read_csv(path+'/protest_related.csv',sep=';',header=0)
+            df_unrelated=pd.read_csv(path+'/protest_unrelated.csv',sep=';',header=0)
         else:
             raise Exception('No such topic!')
         df_related=df_related.drop(columns=['title.1','content.1'],inplace=False)
@@ -60,6 +63,7 @@ def get_contents(topics):
         title_word_cnt.append(list(map(length_count,title_unre)))
 
     plot_article_distribution(topics,article_related,article_unrelated)
+    plot_wordcloud(topics,article_related,article_unrelated)
     plot_word_distribution(topics,article_word_cnt,fig_name='articles')
     plot_word_distribution(topics,title_word_cnt,fig_name='titles')
 
@@ -70,12 +74,13 @@ def length_count(text):
 
 def plot_article_distribution(topics,article_related,article_unrelated):
     barWidth = 0.25
-    fig,ax=plt.subplots(figsize =(12, 8)) 
+    n_topics=len(topics)
+    fig,ax=plt.subplots(figsize=(12,8)) 
 
     cnt_articles_related=list(map(len,article_related))
     cnt_articles_unrelated=list(map(len,article_unrelated))
     
-    br1 = np.arange(len(cnt_articles_related)) 
+    br1 = np.arange(n_topics) 
     br2 = [x + barWidth for x in br1] 
 
     bar_related=ax.bar(br1,cnt_articles_related, color ='#D39200', width = barWidth, edgecolor ='grey', label ='related',alpha=1) 
@@ -115,11 +120,12 @@ def plot_article_distribution(topics,article_related,article_unrelated):
     plt.savefig('../figures/article_barplot.pdf')
 
 def plot_word_distribution(topics,word_count,fig_name='articles'):
+    n_topics=len(topics)
     fig,ax=plt.subplots(figsize=(12,8))
     colors = ['peachpuff', 'orange', 'tomato']
 
-    boxplt1=ax.boxplot([word_count[i] for i in range(len(word_count)) if i%2==0],positions=[1,4,7],patch_artist=True,boxprops=dict(color='black',facecolor=colors[1]))
-    boxplt2=ax.boxplot([word_count[i] for i in range(len(word_count)) if i%2==1],positions=[2,5,8],patch_artist=True,boxprops=dict(color='black',facecolor=colors[2])) 
+    boxplt1=ax.boxplot([word_count[i] for i in range(len(word_count)) if i%2==0],positions=range(1,n_topics*3+1,3),patch_artist=True,boxprops=dict(color='black',facecolor=colors[1]))
+    boxplt2=ax.boxplot([word_count[i] for i in range(len(word_count)) if i%2==1],positions=range(2,n_topics*3+2,3),patch_artist=True,boxprops=dict(color='black',facecolor=colors[2])) 
     '''
     for i in range(int(len(boxplt1['boxes'])/2)):
         for patch in boxplt1['boxes'][2*i:2*(i+1)]:
@@ -142,15 +148,19 @@ def plot_word_distribution(topics,word_count,fig_name='articles'):
 
     plt.savefig(f"../figures/word_boxplot_{fig_name}.pdf")
 
-def plot_wordcloud(topics,article_related,article_unrelated,fig_name='article'):
-    fig,axes=plt.subplots(1,len(topics),figsize=(len(topics)*4,3))
+def plot_wordcloud(topics,article_related,article_unrelated,fig_name='article',exclude_topics=False):
+    n_topics=len(topics)
+    fig,axes=plt.subplots(1,n_topics,figsize=(n_topics*4,3))
     
-    extra_stopwords=['Umweltschutz', 'Waldsterben','Unfall','Abfall','Unfälle','Abfälle','Unfällen']
-    german_stopwords = set(stopwords.words('german')+extra_stopwords)
-    for i in range(len(topics)):
+    extra_stopwords=['Umweltschutz', 'Waldsterben','Unfall','Abfall','Unfälle','Abfälle','Unfällen','Protest']
+    stopwords_used = stopwords.words('german')
+    if exclude_topics:
+        stopwords_used = set(stopwords_used+extra_stopwords)
+    
+    for i in range(n_topics):
         all_texts='\n'.join(article_related[i]+article_unrelated[i])
         wordcloud = WordCloud(width=800, height=400, background_color='white',
-                      stopwords=german_stopwords).generate(all_texts)
+                      stopwords=stopwords_used).generate(all_texts)
         axes[i].imshow(wordcloud, interpolation='bilinear')
         axes[i].axis('off')
         axes[i].set_title(topics[i],fontsize=15,fontweight='bold')
@@ -234,6 +244,7 @@ if __name__=='__main__':
     _,articles,titles=get_contents(config.english_topics)
     corpus=articles
     
+    '''
     corpus=manipulate_texts(
         config.llama_3_1_8b_instruct,
         config.system_role_editor,
@@ -243,3 +254,4 @@ if __name__=='__main__':
             corpus[:idx],
             corpus[idx:],
             fig_name='articles_ex_de')
+    '''

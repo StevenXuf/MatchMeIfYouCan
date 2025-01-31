@@ -20,4 +20,5 @@ task='txt2img'
 #python3 metrics_computation_poster.py $model -t $task
 #python3 poster_manipulation.py
 #python3 -u metrics_computation_poster.py > ./img2txt_clip_top10_test.log
-python3 laka_scraper.py
+#python3 laka_scraper.py
+python3 deduplicates.py
