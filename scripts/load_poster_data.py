@@ -1,5 +1,5 @@
 import pandas as pd
-from scraper import get_poster_data
+from subset_scraper import get_poster_data
 import torch
 
 

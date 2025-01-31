@@ -5,7 +5,7 @@ from torchmetrics.functional.pairwise import pairwise_cosine_similarity
 from torchmetrics.classification import MulticlassPrecision,MulticlassRecall,MultilabelPrecision,MultilabelRecall
 
 import config
-from poster_manipulation import get_poster_data_n37,extract_features
+from poster_manipulation import get_poster_subset,extract_features
 from text_manipulation import get_contents,manipulate_texts
 
 def compute_poster_metrics(features,task='img2txt'):
@@ -36,7 +36,7 @@ def params():
 
 def get_poster_metrics():
     args=params()
-    poster=get_poster_data_n37(config.in_file,config.out_file,config.anno_file)
+    poster=get_poster_subset(config.in_file,config.out_file,config.anno_file)
     features=extract_features(poster,args.model)
     compute_poster_metrics(features,args.task)
 
@@ -85,7 +85,7 @@ def compute_poster_article_metrics(text_type,system_role,model_name,task,top_k=1
             corpus)
     '''
     corpus=[item for sublist in corpus for item in sublist]
-    poster=get_poster_data_n37(config.in_file,config.out_file,config.anno_file)
+    poster=get_poster_subset(config.in_file,config.out_file,config.anno_file)
     features=extract_features({'images':poster['images'],'texts':corpus},model_name)
     features['image features']=features['image features'].cpu()
     features['text features']=features['text features'].cpu()

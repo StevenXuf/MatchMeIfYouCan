@@ -1,5 +1,5 @@
 in_file='../data/swiss_poster_links.csv'
-out_file='../data/swiss_poster_data_n45.pt'
+out_file='../data/swiss_poster_data.pt'
 anno_file='../data/poster_anno.xlsx'
 
 english_topics=[

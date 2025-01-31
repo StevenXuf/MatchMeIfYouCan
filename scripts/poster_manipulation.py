@@ -15,31 +15,30 @@ from load_poster_data import load_data
 import config
 from feature_extractor import extract_feat_clip, extract_feat_blip
 
-def get_poster_data_n45(in_file,out_file):
+def get_poster_data(in_file,out_file):
     if os.path.exists(f'{out_file}'):
-        swiss_poster_n45=torch.load(f'{out_file}',weights_only=True)
+        swiss_poster_data=torch.load(f'{out_file}',weights_only=True)
     else:
-        swiss_poster_n45=load_data(in_file,out_file)
-    return swiss_poster_n45
+        swiss_poster_data=load_data(in_file,out_file)
+    return swiss_poster_data
 
-def get_poster_data_n37(in_file,out_file,anno_file):
+def get_poster_subset(in_file,out_file,anno_file):
     poster_annotation=pd.read_excel(f'{anno_file}')
     poster_annotation=poster_annotation.fillna(0)
     poster_annotation[['children','environment']]=poster_annotation[['children','environment']].astype('int64')
 
-    df=poster_annotation.drop(['image','text'],axis=1)
-    for column in ['children','protest','doom']:
-        df=df[df[column]!=1].drop([column],axis=1)
-    df=df[(df == 0).all(axis=1)!=True]
+    df=poster_annotation.drop(['image','text','doom','children'],axis=1)
+    is_all_zeros=df.eq(0).all(axis=1)
+    df=df[~is_all_zeros]
 
     poster_indices=df.index.tolist()
     
     clean_images=[]
     clean_texts=[]
-    swiss_poster_n45=get_poster_data_n45(in_file,out_file)
+    swiss_poster_data=get_poster_data(in_file,out_file)
     for idx in poster_indices:
-        clean_images.append(swiss_poster_n45['images'][idx])
-        clean_texts.append(swiss_poster_n45['texts'][idx])
+        clean_images.append(swiss_poster_data['images'][idx])
+        clean_texts.append(swiss_poster_data['texts'][idx])
     return {'images':clean_images,'texts':clean_texts,'ids':poster_indices,'anno':df}
 
 def img_transform():
@@ -138,8 +137,9 @@ def plot_cosine(features,model):
     plt.title('Img-txt Cosine Similarity')
     plt.savefig(f'../figures/cosine_{model}.pdf')
 
-def plot_topic_img_sim(topics,images,cosine,model_name):
-    topic_image_scores=cosine.cpu()
+def plot_topic_img_sim(topics,images,model_name):
+    features=extract_features({'images':images,'texts':topics},model_name)
+    topic_image_scores=pairwise_cosine_similarity(features['text features'],features['image features']).cpu()
     plt.figure(figsize=(18,4))
     plt.imshow(topic_image_scores)
     plt.yticks(range(len(topics)), topics, fontsize=12)
@@ -159,11 +159,14 @@ def plot_topic_img_sim(topics,images,cosine,model_name):
     plt.tight_layout()
     plt.savefig(f'../figures/topic2img_sim_{model_name}.pdf')
 
-#Plot heatmap between topics and images 
-def plot_heatmap(model_name):
-    #poster=get_poster_data_n45(config.in_file,config.out_file)
-    #plot_poster_with_title(poster['images'],poster['texts'],'Laka')
-    poster=get_poster_data_n37(config.in_file,config.out_file,config.anno_file)
-    features=extract_features({'images':poster['images'],'texts':config.english_topics},model_name)
-    cosine=pairwise_cosine_similarity(features['text features'],features['image features'])
-    plot_topic_img_sim(config.english_topics,poster['images'],cosine,model_name)
+
+if __name__=='__main__':
+    model_name='clip'
+    topics=config.english_topics
+    in_file,out_file,anno_file=config.in_file,config.out_file,config.anno_file
+
+    poster=get_poster_data(in_file,out_file)
+    plot_poster_with_title(poster['images'],poster['texts'],'Laka')
+    
+    subset=get_poster_subset(in_file,out_file,anno_file)
+    plot_topic_img_sim(topics,subset['images'],model_name)
