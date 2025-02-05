@@ -25,7 +25,7 @@ def get_poster_data(in_file,out_file):
 def get_poster_subset(in_file,out_file,anno_file):
     poster_annotation=pd.read_excel(f'{anno_file}')
     poster_annotation=poster_annotation.fillna(0)
-    poster_annotation[['children','environment']]=poster_annotation[['children','environment']].astype('int64')
+    poster_annotation[['children','environmentalism']]=poster_annotation[['children','environmentalism']].astype('int64')
 
     df=poster_annotation.drop(['image','text','doom','children'],axis=1)
     is_all_zeros=df.eq(0).all(axis=1)
@@ -92,7 +92,7 @@ def text_process(title,line_length=4):
     res=res.strip(' ').strip('\n')
     return res
 
-def plot_poster_with_title(imgs,titles,fig_name):
+def plot_poster_with_title(imgs,titles,fig_name,ids):
     total=len(imgs)
     n_col=5
     n_row=int(math.ceil(total/n_col))
@@ -102,14 +102,24 @@ def plot_poster_with_title(imgs,titles,fig_name):
     transform1,_,_=img_transform()
     for ii in range(n_row*n_col):
         i,j=ii//n_col,ii%n_col
-        axes[i,j].axis('off')
         if ii<total: 
             img=imgs[ii]
             img=transform1(img)
             img=img.permute(1,2,0)
             axes[i,j].imshow(img)
             axes[i,j].set_title(f"{text_process(titles[ii].split(';')[0])}",fontsize=8)
-    plt.subplots_adjust(left=0.0, right=1.0, top=.97, bottom=0.0, wspace=0.0, hspace=0.3)
+            if ii in ids:
+                for spine in axes[i,j].spines.values():
+                    spine.set_color('green')
+                    spine.set_linewidth(5)
+            else:
+                for spine in axes[i,j].spines.values():
+                    spine.set_visible(False)
+
+            axes[i,j].set_xticks([])  # Hide x-axis ticks
+            axes[i,j].set_yticks([])
+
+    plt.subplots_adjust(left=0.0, right=1.0, top=.97, bottom=0.02, wspace=0.0, hspace=0.31)
     plt.savefig(f'../figures/{fig_name}_posters.pdf')
 
 
@@ -166,7 +176,7 @@ if __name__=='__main__':
     in_file,out_file,anno_file=config.in_file,config.out_file,config.anno_file
 
     poster=get_poster_data(in_file,out_file)
-    plot_poster_with_title(poster['images'],poster['texts'],'Laka')
-    
     subset=get_poster_subset(in_file,out_file,anno_file)
+
+    plot_poster_with_title(poster['images'],poster['texts'],'Laka',subset['ids'])
     plot_topic_img_sim(topics,subset['images'],model_name)

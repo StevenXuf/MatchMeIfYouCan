@@ -1,0 +1,36 @@
+digraph Pipeline {
+	graph [rankdir=LR size="8,8"]
+	subgraph cluster1 {
+		color=lightblue fontcolor=blue fontsize=15 label="Poster Processing" style=dashed
+		X [label="Scrape Poster Data" fillcolor=lightblue style=filled]
+		Y [label="Define Topics" fillcolor=lightblue style=filled]
+	}
+	subgraph cluster2 {
+		color=lightgreen fontcolor=blue fontsize=15 label="Text Processing" style=dashed
+		A [label="Gather Articles 
+ via Impresso" fillcolor=lightblue style=filled]
+		B [label="Transform text 
+ via Llama-3.1-8B-Instruct" fillcolor=lightgreen style=filled]
+	}
+	subgraph cluster4 {
+		color=gold fontcolor=blue fontsize=15 label=Vectorization style=dashed
+		D [label="Feature Extraction 
+ via CLIP/BLIP" fillcolor=lightgoldenrod style=filled]
+		C [label="BoW/TF-IDF" fillcolor=lightgoldenrod style=filled]
+	}
+	subgraph cluster5 {
+		color=purple fontcolor=blue fontsize=15 label=Evaluation style=dashed
+		E [label="Compute Similarity" fillcolor=lightpink style=filled]
+		F [label="Cross-modal Retrieval 
+ Based on Ranked Distance" fillcolor=lightcoral style=filled]
+	}
+	A -> B
+	B -> C
+	C -> E
+	D -> E
+	E -> F
+	X -> Y
+	Y -> D
+	B -> D
+	Y -> A
+}
