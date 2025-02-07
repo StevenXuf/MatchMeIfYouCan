@@ -64,9 +64,21 @@ def img_transform():
         ])
     return transform1,transform2,transform3
 
-def plot_poster_dist(dates,cnts):
+def plot_poster_dist(poster_texts):
+    date_info={}
+    for text in poster_texts:
+        country,date=text.strip(' ').split(';')[1].strip(' ').split(' ')
+        date=date.strip('()')
+        if country.lower()=='switzerland':
+            if date not in date_info:
+                date_info[date]=[date]
+            else:
+                date_info[date].append(date)
+    dates=sorted(list(date_info.keys()))
+    cnts=[len(date_info[k]) for k in dates]
     fig, ax = plt.subplots(figsize=(7,3))
-
+    
+    colors=plt.get_cmap('Paired').colors
     bars=ax.bar(dates,cnts,color=colors)
     ax.set_xticklabels(dates, fontsize=8)
     ax.yaxis.set_major_locator(MaxNLocator(integer=True))
@@ -152,7 +164,7 @@ def plot_topic_img_sim(topics,images,model_name):
     topic_image_scores=pairwise_cosine_similarity(features['text features'],features['image features']).cpu()
     plt.figure(figsize=(18,4))
     plt.imshow(topic_image_scores)
-    plt.yticks(range(len(topics)), topics, fontsize=12)
+    plt.yticks(range(len(topics)), topics, fontsize=12,fontweight='bold')
     plt.xticks([])
     for i, image in enumerate(images):
         plt.imshow(image,extent=(i - 0.5, i + 0.5, -1.6, -0.6), origin="lower")
@@ -171,12 +183,15 @@ def plot_topic_img_sim(topics,images,model_name):
 
 
 if __name__=='__main__':
-    model_name='clip'
+    torch.manual_seed(0)
+    model_name='blip'
     topics=config.english_topics
     in_file,out_file,anno_file=config.in_file,config.out_file,config.anno_file
 
     poster=get_poster_data(in_file,out_file)
     subset=get_poster_subset(in_file,out_file,anno_file)
-
+    print(subset['anno'])
+   
+    plot_poster_dist(poster['texts'])
     plot_poster_with_title(poster['images'],poster['texts'],'Laka',subset['ids'])
     plot_topic_img_sim(topics,subset['images'],model_name)

@@ -184,22 +184,23 @@ def re_order(articles,results):
     return divided_list
 
 def clean_metadata(batch,pipeline,system_role):
-    
     messages = [[
             {"role": "system", "content": system_role},
-            {"role": "user", "content": article},
+            {"role": "user", "content": f'Clean the following: \n\n{article}'}
         ] for article in batch["metadata"]]
     
-    cleaned_results = pipeline(messages,max_new_tokens=3076)
-    batch["cleaned_data"] = [result["generated_text"][-1]['content'] for result in cleaned_results]
+    cleaned_results = pipeline(messages,max_new_tokens=3076,temperature=.6)
+    batch["cleaned_data"] = [result[0]["generated_text"][-1]['content'] for result in cleaned_results]
 
     return batch
 
 def manipulate_texts(model_id,system_role,articles):
     results=[]
     denested_articles=[item for sublist in articles for item in sublist]
+    denested_articles=[text if len(text)!=0 else 'Null' for text in denested_articles]
     dataset=Dataset.from_dict({'metadata':denested_articles})
     
+    generator = torch.Generator().manual_seed(42)
     pipeline= transformers.pipeline(
         "text-generation",
         model=model_id,
@@ -207,26 +208,10 @@ def manipulate_texts(model_id,system_role,articles):
         device_map="auto",
     )
     
-    '''
-    for article in tqdm(denested_articles):
-        messages = [
-            {"role": "system", "content": system_role},
-            {"role": "user", "content": article},
-        ]
-        outputs = pipeline(
-            messages,
-            max_new_tokens=3076
-        )
-        clean_article=outputs[0]["generated_text"][-1]['content']
-        results.append(clean_article)
-        print(article)
-        print('-'*40)
-        print(clean_article)
-        print('*'*40)
-    '''
-
-    clean_dataset=dataset.map(clean_metadata,batched=True,batch_size=16,fn_kwargs={'pipeline':pipeline,'system_role':system_role})
-    re_ordered_results=re_order(articles,clean_dataset['cleaned_data'])
+    results=dataset.map(clean_metadata,batched=True,batch_size=16,fn_kwargs={'pipeline':pipeline,'system_role':system_role})
+    re_ordered_results=re_order(articles,results['cleaned_data'])
+    print(results['cleaned_data'])
+    results.save_to_disk('../data/corpus_dataset')
 
     return re_ordered_results
 

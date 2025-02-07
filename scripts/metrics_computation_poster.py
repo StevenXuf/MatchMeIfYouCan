@@ -71,19 +71,14 @@ def get_targets(poster,articles,task):
 
 
 def compute_poster_article_metrics(text_type,system_role,model_name,task,top_k=10):
-    _,articles,titles=get_contents(config.english_topics)
+    _,articles,titles=get_contents(config.english_topics,dtype='clean')
     if text_type=='articles':
         corpus=articles
     elif text_type=='titles':
         corpus=titles
     else:
         raise Exception('No such a text type')
-    '''
-    corpus=manipulate_texts(
-            config.llama_3_1_8b_instruct,
-            system_role,
-            corpus)
-    '''
+    
     corpus=[item for sublist in corpus for item in sublist]
     poster=get_poster_subset(config.in_file,config.out_file,config.anno_file)
     features=extract_features({'images':poster['images'],'texts':corpus},model_name)
@@ -109,6 +104,7 @@ def compute_poster_article_metrics(text_type,system_role,model_name,task,top_k=1
     print(f'Top {top_k} precision: {precision_val.item()*100:.2f}')
     print(f'Top {top_k} recall: {recall_val.item()*100:.2f}')
     
+    '''
     pre=.0
     re=.0
     target_ids=torch.topk(targets,top_k,dim=1).indices
@@ -119,6 +115,7 @@ def compute_poster_article_metrics(text_type,system_role,model_name,task,top_k=1
         print(correct_ids.size(0)/torch.sum(targets[i]))
     print(f'Avg Precision: {pre/targets.size(0)*100:.2f}')
     print(f'Avg Recall: {re/targets.size(0)*100:.2f}')
+    '''
 
 if __name__=='__main__':
     text_type='articles'

@@ -2,6 +2,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from torchmetrics.functional.pairwise import pairwise_cosine_similarity
+from torchmetrics.classification import MulticlassPrecision,MulticlassRecall,MultilabelPrecision,MultilabelRecall
 
 import torch
 import numpy as np
