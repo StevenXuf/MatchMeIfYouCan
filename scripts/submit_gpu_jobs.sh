@@ -1,6 +1,7 @@
 #!/bin/sh -l
 #SBATCH --time=48:00:00
-#SBATCH -N 2
+#SBATCH -N 1
+#SBATCH --gpus-per-node=4
 #SBATCH --ntasks-per-node=1
 #SBATCH --partition=gpu
 #SBATCH --qos=default
@@ -17,10 +18,13 @@ cd /home/users/u101139/D4H/scripts/
 model='blip'
 task='txt2img'
 
+MASTER_ADDR=$(scontrol show hostname $SLURM_NODELIST | head -n 1)
+MASTER_PORT=$RANDOM
+
 #python3 metrics_computation_poster.py $model -t $task
 #python3 poster_manipulation.py
 #python3 -u metrics_computation_poster.py > ./img2txt_clip_top10_test.log
 #python3 laka_scraper.py
 #python3 deduplicates.py
 #python3 text_manipulation.py
-srun torchrun --nnodes=2 --nproc_per_node=4 clean_impresso160k.py
+python3 clean_impresso160k.py
