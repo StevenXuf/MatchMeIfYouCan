@@ -18,6 +18,7 @@ nltk.download('stopwords')
 from nltk.corpus import stopwords
 
 import config
+from clean_text_dataset import clean_text
 
 def get_contents(topics,dtype='meta'):
     article_dfs=[]
@@ -38,24 +39,27 @@ def get_contents(topics,dtype='meta'):
         article_dfs.append(df_related)
         article_dfs.append(df_unrelated)
        
-        content_related=df_related['content'].fillna('').tolist()
-        content_unrelated=df_unrelated['content'].fillna('').tolist()
+        content_related=df_related['content'].fillna('Null').tolist()
+        content_unrelated=df_unrelated['content'].fillna('Null').tolist()
         article_related.append(content_related)
         article_unrelated.append(content_unrelated)
         
-        title_re=df_related['title'].fillna('').tolist()
-        title_unre=df_unrelated['title'].fillna('').tolist()
+        title_re=df_related['title'].fillna('Null').tolist()
+        title_unre=df_unrelated['title'].fillna('Null').tolist()
         title_related.append(title_re)
         title_unrelated.append(title_unre)
     
     if dtype=='clean':
         corpus=article_related+article_unrelated+title_related+title_unrelated
-        corpus=manipulate_texts(
-            config.llama,
-            config.system_role_editor,
-            corpus)
+
+        corpus_list=denest(corpus)
+        results=clean_text(corpus_list,config.system_role_editor,config.qwen,seed=42,n_gpu=1,batch_size=256)
+        print(results['clean_data'])
+        results.save_to_disk('../data/impresso_subset_clean')
+        re_ordered_results=re_order(corpus,results['clean_data'])
+        
         idx=len(corpus)//4
-        article_related,article_unrelated,title_related,title_unrelated=corpus[:idx],corpus[idx:2*idx],corpus[2*idx:3*idx],corpus[3*idx:]
+        article_related,article_unrelated,title_related,title_unrelated=re_ordered_results[:idx],re_ordered_results[idx:2*idx],re_ordered_results[2*idx:3*idx],re_ordered_results[3*idx:]
 
     article_word_cnt=[list(map(length_count,cont_lst)) for cont_lst in article_related+article_unrelated]
     title_word_cnt=[list(map(length_count,cont_lst)) for cont_lst in title_related+title_unrelated]
@@ -196,7 +200,7 @@ def clean_metadata(batch,pipeline,system_role):
 
 def manipulate_texts(model_id,system_role,articles):
     results=[]
-    denested_articles=[item for sublist in articles for item in sublist]
+    denested_articles=denest(articles)
     denested_articles=[text if len(text)!=0 else 'Null' for text in denested_articles]
     dataset=Dataset.from_dict({'metadata':denested_articles})
     
@@ -220,7 +224,7 @@ def translate(model_id,articles):
     tokenizer=AutoTokenizer.from_pretrained(model_id)
     model=AutoModel.from_pretrained(model_id)
 
-    denested_articles=[item for sublist in articles for item in sublist]
+    denested_articles=denest(articles)
     
     results=[]
     for article in tqdm(denested_articles):
@@ -237,7 +241,7 @@ def translate(model_id,articles):
 def lemmatize(articles):
     nlp=spacy.load('de_core_news_sm')
     
-    denested_articles=[item for sublist in articles for item in sublist]
+    denested_articles=denest(articles)
 
     results=[]
     for article in tqdm(denested_articles):
@@ -249,6 +253,9 @@ def lemmatize(articles):
     re_ordered_results=re_order(articles,results)
 
     return re_ordered_results
+
+def denest(nested_list):
+    return [item for sublist in nested_list for item in sublist]
 
 if __name__=='__main__':
     torch.manual_seed(0)
