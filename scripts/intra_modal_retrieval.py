@@ -2,7 +2,6 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from torchmetrics.functional.pairwise import pairwise_cosine_similarity
-from torchmetrics.classification import MulticlassPrecision,MulticlassRecall,MultilabelPrecision,MultilabelRecall
 
 import torch
 import numpy as np
@@ -10,6 +9,7 @@ import numpy as np
 import config
 from text_manipulation import get_contents,manipulate_texts,translate,lemmatize
 from feature_extractor import extract_feat_clip,extract_feat_blip
+from poster_manipulation import get_precision_recall
 
 def compute_metrics_via_classic_methods(method,query,corpus,top_k=10):
     if method=='bow':

@@ -1,0 +1,12 @@
+INFO 02-15 02:35:28 __init__.py:190] Automatically detected platform cuda.
+Whole dataset has been processed. Terminated.
+**********blip**********
+reshape position embedding from 576 to 196
+load checkpoint from https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_retrieval_coco.pth
+**********img2txt**********
+Top 1 precision: 11.06
+Top 1 recall: 11.06
+Top 5 precision: 4.12
+Top 5 recall: 20.58
+Top 10 precision: 2.57
+Top 10 recall: 25.72

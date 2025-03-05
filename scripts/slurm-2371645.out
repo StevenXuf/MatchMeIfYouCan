@@ -1,0 +1,24 @@
+
+The following have been reloaded with a version change:
+  1) env/release/2024.1 => env/release/2023.1
+
+[nltk_data] Downloading package stopwords to
+[nltk_data]     /home/users/u101139/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+[nltk_data] Downloading package punkt to
+[nltk_data]     /home/users/u101139/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+INFO 02-23 19:29:08 __init__.py:190] Automatically detected platform cuda.
+nuclear accidents
+nuclear waste
+protest
+environmentalism
+Whole dataset has been processed. Terminated.
+txt2img
+torch.Size([117, 22])
+Top 1 precision: 10.26
+Top 1 recall: 2.44
+Top 5 precision: 8.72
+Top 5 recall: 7.80
+Top 10 precision: 8.21
+Top 10 recall: 12.93

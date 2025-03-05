@@ -1,32 +1,39 @@
 import pandas as pd
 import transformers
-from datasets import Dataset
 import torch
 import matplotlib.pyplot as plt
 import numpy as np
 import random
 import spacy
 import numpy as np
+import shutil
+import os
+import logging
+import string
 
+from datasets import Dataset
 from tqdm import tqdm
 from matplotlib.ticker import MaxNLocator
-from wordcloud import WordCloud,STOPWORDS
+from wordcloud import WordCloud
 from transformers import AutoModel,AutoTokenizer
+from termcolor import colored
 
 import nltk
 nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('punkt_tab')
 from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
 
 import config
-from clean_text_dataset import clean_text
+from clean_text_dataset import clean_text,get_subfix,remove_sprcial_chars,store_dataset
 
-def get_contents(topics,dtype='meta'):
+def get_contents(topics,role,model,is_meta=False,path='../data/impresso'):
     article_dfs=[]
     article_related=[]
     article_unrelated=[]
     title_related=[]
     title_unrelated=[]
-    path='../data/impresso'
     
     for topic in topics:
         print(topic)
@@ -39,36 +46,40 @@ def get_contents(topics,dtype='meta'):
         article_dfs.append(df_related)
         article_dfs.append(df_unrelated)
        
-        content_related=df_related['content'].fillna('Null').tolist()
-        content_unrelated=df_unrelated['content'].fillna('Null').tolist()
+        content_related=remove_sprcial_chars(df_related['content']).tolist()
+        content_unrelated=remove_sprcial_chars(df_unrelated['content']).tolist()
         article_related.append(content_related)
         article_unrelated.append(content_unrelated)
         
-        title_re=df_related['title'].fillna('Null').tolist()
-        title_unre=df_unrelated['title'].fillna('Null').tolist()
+        title_re=remove_sprcial_chars(df_related['title']).tolist()
+        title_unre=remove_sprcial_chars(df_unrelated['title']).tolist()
         title_related.append(title_re)
         title_unrelated.append(title_unre)
-    
-    if dtype=='clean':
+   
+    if is_meta:
+        subfix='meta'
+    else:
+        subfix=get_subfix(role)
+
         corpus=article_related+article_unrelated+title_related+title_unrelated
 
         corpus_list=denest(corpus)
-        results=clean_text(corpus_list,config.system_role_editor,config.qwen,seed=42,n_gpu=1,batch_size=256)
-        print(results['clean_data'])
-        results.save_to_disk('../data/impresso_subset_clean')
+        results=clean_text(corpus_list,role,model,seed=42,n_gpu=1,batch_size=256,path=path+'/subset')
+    
         re_ordered_results=re_order(corpus,results['clean_data'])
-        
+        print(len(corpus))
+        print(len(re_ordered_results))
         idx=len(corpus)//4
         article_related,article_unrelated,title_related,title_unrelated=re_ordered_results[:idx],re_ordered_results[idx:2*idx],re_ordered_results[2*idx:3*idx],re_ordered_results[3*idx:]
 
-    article_word_cnt=[list(map(length_count,cont_lst)) for cont_lst in article_related+article_unrelated]
-    title_word_cnt=[list(map(length_count,cont_lst)) for cont_lst in title_related+title_unrelated]
+    article_word_cnt=[[len(word_tokenize(content)) for content in cont_lst] for cont_lst in article_related+article_unrelated]
+    title_word_cnt=[[len(word_tokenize(content)) for content in cont_lst] for cont_lst in title_related+title_unrelated]
 
     plot_article_distribution(topics,article_related,article_unrelated)
-    plot_wordcloud(topics,article_related,article_unrelated,fig_name=f'articles_{dtype}')
-    plot_wordcloud(topics,title_related,title_unrelated,fig_name=f'titles_{dtype}')
-    plot_word_distribution(topics,article_word_cnt,fig_name=f'articles_{dtype}')
-    plot_word_distribution(topics,title_word_cnt,fig_name=f'titles_{dtype}')
+    plot_wordcloud(topics,lemmatize(article_related),lemmatize(article_unrelated),fig_name=f'articles_{subfix}',exclude_topics=False)
+    plot_wordcloud(topics,lemmatize(title_related),lemmatize(title_unrelated),fig_name=f'titles_{subfix}',exclude_topics=False)
+    plot_word_distribution(topics,article_word_cnt,fig_name=f'articles_{subfix}')
+    plot_word_distribution(topics,title_word_cnt,fig_name=f'titles_{subfix}')
     
     return article_dfs,article_related+article_unrelated,title_related+title_unrelated
 
@@ -133,11 +144,6 @@ def plot_word_distribution(topics,word_count,fig_name='articles'):
 
     boxplt1=ax.boxplot([word_count[i] for i in range(len(word_count)//2)],positions=range(1,n_topics*3+1,3),patch_artist=True,boxprops=dict(color='black',facecolor=colors[1]))
     boxplt2=ax.boxplot([word_count[i] for i in range(len(word_count)//2,len(word_count))],positions=range(2,n_topics*3+2,3),patch_artist=True,boxprops=dict(color='black',facecolor=colors[2])) 
-    '''
-    for i in range(int(len(boxplt1['boxes'])/2)):
-        for patch in boxplt1['boxes'][2*i:2*(i+1)]:
-            patch.set(facecolor=colors[i])
-    '''
 
     for median in boxplt1['medians']+boxplt2['medians']:
         median.set(color='black', linewidth=2)
@@ -166,7 +172,9 @@ def plot_wordcloud(topics,article_related,article_unrelated,fig_name='articles',
         stopwords_used = set(stopwords_used+extra_stopwords)
     
     for i in range(n_topics):
-        all_texts='\n'.join(article_related[i]+article_unrelated[i])
+        all_texts=word_tokenize('\n'.join(article_related[i]+article_unrelated[i]),language='german')
+        all_texts=' '.join(all_texts)
+
         wordcloud = WordCloud(width=800, height=400, background_color='white',
                       stopwords=stopwords_used).generate(all_texts)
         axes[i].imshow(wordcloud, interpolation='bilinear')
@@ -186,39 +194,6 @@ def re_order(articles,results):
         index += length
 
     return divided_list
-
-def clean_metadata(batch,pipeline,system_role):
-    messages = [[
-            {"role": "system", "content": system_role},
-            {"role": "user", "content": f'Clean the following: \n\n{article}'}
-        ] for article in batch["metadata"]]
-    
-    cleaned_results = pipeline(messages,max_new_tokens=3076,temperature=.6)
-    batch["cleaned_data"] = [result[0]["generated_text"][-1]['content'] for result in cleaned_results]
-
-    return batch
-
-def manipulate_texts(model_id,system_role,articles):
-    results=[]
-    denested_articles=denest(articles)
-    denested_articles=[text if len(text)!=0 else 'Null' for text in denested_articles]
-    dataset=Dataset.from_dict({'metadata':denested_articles})
-    
-    generator = torch.Generator().manual_seed(42)
-    pipeline= transformers.pipeline(
-        "text-generation",
-        model=model_id,
-        model_kwargs={"torch_dtype": torch.bfloat16},
-        device_map="auto",
-    )
-    
-    results=dataset.map(clean_metadata,batched=True,batch_size=16,fn_kwargs={'pipeline':pipeline,'system_role':system_role})
-    re_ordered_results=re_order(articles,results['cleaned_data'])
-    print(results['cleaned_data'])
-    results.save_to_disk('../data/corpus_dataset')
-
-    return re_ordered_results
-
 
 def translate(model_id,articles):
     tokenizer=AutoTokenizer.from_pretrained(model_id)
@@ -260,4 +235,7 @@ def denest(nested_list):
 if __name__=='__main__':
     torch.manual_seed(0)
     topics=config.english_topics
-    _,articles,titles=get_contents(topics,dtype='clean')
+    role=config.system_role_editor
+    model=config.qwen
+    logging.basicConfig(level=logging.DEBUG)
+    _,articles,titles=get_contents(topics,role,model,is_meta=True)

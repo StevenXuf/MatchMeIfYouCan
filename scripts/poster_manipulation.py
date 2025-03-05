@@ -10,10 +10,22 @@ from tqdm import tqdm
 from torchvision.transforms import v2
 from torchvision.transforms.functional import InterpolationMode
 from torchmetrics.functional.pairwise import pairwise_cosine_similarity
+from torchmetrics.retrieval import RetrievalRecall,RetrievalPrecision
 
 from load_poster_data import load_data
 import config
 from feature_extractor import extract_feat_clip, extract_feat_blip
+
+def get_precision_recall(preds,tars,k):
+    compute_precision=RetrievalPrecision(top_k=k)
+    compute_recall=RetrievalRecall(top_k=k)
+    
+    idx=torch.tensor([[i]*tars.size(1) for i in range(0,tars.size(0))]) 
+    
+    precision_val=compute_precision(preds,tars,indexes=idx)
+    recall_val=compute_recall(preds,tars,indexes=idx)
+    print(f'Top {k} precision: {precision_val.item()*100:.2f}')
+    print(f'Top {k} recall: {recall_val.item()*100:.2f}')
 
 def get_poster_data(in_file,out_file):
     if os.path.exists(f'{out_file}'):
@@ -80,7 +92,7 @@ def plot_poster_dist(poster_texts):
     
     colors=plt.get_cmap('Paired').colors
     bars=ax.bar(dates,cnts,color=colors)
-    ax.set_xticklabels(dates, fontsize=8)
+    ax.set_xticklabels(dates, fontsize=4)
     ax.yaxis.set_major_locator(MaxNLocator(integer=True))
 
     for bar in bars:
@@ -152,16 +164,13 @@ def extract_features(data,model):
         raise Exception('No such a model.')
     return features
 
-def plot_cosine(features,model):
-    cos_sim=pairwise_cosine_similarity(features['image features'].cpu(),features['text features'].cpu())
-    plt.figure(figsize=(3,3))
-    plt.imshow(cos_sim)
-    plt.title('Img-txt Cosine Similarity')
-    plt.savefig(f'../figures/cosine_{model}.pdf')
-
-def plot_topic_img_sim(topics,images,model_name):
+def compute_cosine(images,topics,model_name):
     features=extract_features({'images':images,'texts':topics},model_name)
     topic_image_scores=pairwise_cosine_similarity(features['text features'],features['image features']).cpu()
+    return topic_image_scores
+
+def plot_topic_img_sim(topics,images,model_name):
+    topic_image_scores=compute_cosine(images,topics,model_name)
     plt.figure(figsize=(18,4))
     plt.imshow(topic_image_scores)
     plt.yticks(range(len(topics)), topics, fontsize=12,fontweight='bold')
@@ -179,8 +188,9 @@ def plot_topic_img_sim(topics,images,model_name):
     plt.ylim([len(topics) + 0.5, -2])
     
     plt.tight_layout()
-    plt.savefig(f'../figures/topic2img_sim_{model_name}.pdf')
-
+    plt.savefig(f'../figures/topic2img_sim_{model_name}_de.pdf')
+    
+    return topic_image_scores
 
 if __name__=='__main__':
     torch.manual_seed(0)
@@ -190,8 +200,13 @@ if __name__=='__main__':
 
     poster=get_poster_data(in_file,out_file)
     subset=get_poster_subset(in_file,out_file,anno_file)
-    print(subset['anno'])
-   
-    plot_poster_dist(poster['texts'])
-    plot_poster_with_title(poster['images'],poster['texts'],'Laka',subset['ids'])
-    plot_topic_img_sim(topics,subset['images'],model_name)
+
+    #plot_poster_dist(poster['texts'])
+    #plot_poster_with_title(poster['images'],poster['texts'],'Laka',subset['ids'])
+    preds=plot_topic_img_sim(topics,subset['images'],model_name).T
+    tars=torch.tensor(subset['anno'].to_numpy())
+    tars[tars==2]=1
+    print(preds)
+    print(tars)
+    for top_k in [1,5,10]:
+        get_precision_recall(preds.T,tars.T,top_k)
