@@ -100,7 +100,7 @@ def plot_poster_dist(poster_texts):
         ax.text(bar.get_x() + bar.get_width() / 2, height, f'{height}', 
                 ha='center', va='bottom', fontsize=6)
 
-    ax.set_ylabel('frequency')
+    ax.set_ylabel('Frequency')
 
     plt.savefig('../figures/poster_dist.pdf')
 
@@ -120,7 +120,7 @@ def plot_poster_with_title(imgs,titles,fig_name,ids):
     total=len(imgs)
     n_col=5
     n_row=int(math.ceil(total/n_col))
-    subplt_size=3
+    subplt_size=4
 
     fig,axes=plt.subplots(n_row,n_col,figsize=(n_col*subplt_size,n_row*subplt_size))
     transform1,_,_=img_transform()
@@ -131,7 +131,7 @@ def plot_poster_with_title(imgs,titles,fig_name,ids):
             img=transform1(img)
             img=img.permute(1,2,0)
             axes[i,j].imshow(img)
-            axes[i,j].set_title(f"{text_process(titles[ii].split(';')[0])}",fontsize=8)
+            axes[i,j].set_title(f"{text_process(titles[ii].split(';')[0])}",fontsize=10,fontweight='bold')
             if ii in ids:
                 for spine in axes[i,j].spines.values():
                     spine.set_color('green')
@@ -145,7 +145,7 @@ def plot_poster_with_title(imgs,titles,fig_name,ids):
 
     plt.subplots_adjust(left=0.0, right=1.0, top=.97, bottom=0.02, wspace=0.0, hspace=0.31)
     plt.savefig(f'../figures/{fig_name}_posters.pdf')
-
+    print('DONE!')
 
 def extract_features(data,model):
     features={}
@@ -201,8 +201,9 @@ if __name__=='__main__':
     poster=get_poster_data(in_file,out_file)
     subset=get_poster_subset(in_file,out_file,anno_file)
 
-    #plot_poster_dist(poster['texts'])
-    #plot_poster_with_title(poster['images'],poster['texts'],'Laka',subset['ids'])
+    plot_poster_dist(poster['texts'])
+    plot_poster_with_title(poster['images'],poster['texts'],'laka',subset['ids'])
+    '''
     preds=plot_topic_img_sim(topics,subset['images'],model_name).T
     tars=torch.tensor(subset['anno'].to_numpy())
     tars[tars==2]=1
@@ -210,3 +211,4 @@ if __name__=='__main__':
     print(tars)
     for top_k in [1,5,10]:
         get_precision_recall(preds.T,tars.T,top_k)
+    ''' 

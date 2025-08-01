@@ -78,8 +78,8 @@ def get_contents(topics,role,model,is_meta=False,path='../data/impresso'):
     plot_article_distribution(topics,article_related,article_unrelated)
     plot_wordcloud(topics,lemmatize(article_related),lemmatize(article_unrelated),fig_name=f'articles_{subfix}',exclude_topics=False)
     plot_wordcloud(topics,lemmatize(title_related),lemmatize(title_unrelated),fig_name=f'titles_{subfix}',exclude_topics=False)
-    plot_word_distribution(topics,article_word_cnt,fig_name=f'articles_{subfix}')
-    plot_word_distribution(topics,title_word_cnt,fig_name=f'titles_{subfix}')
+    plot_word_distribution(topics,article_word_cnt,fig_name=f'articles')
+    plot_word_distribution(topics,title_word_cnt,fig_name=f'titles')
     
     return article_dfs,article_related+article_unrelated,title_related+title_unrelated
 
@@ -89,7 +89,7 @@ def length_count(text):
     else:
         return len(text.strip(' ').split(' '))
 
-def plot_article_distribution(topics,article_related,article_unrelated):
+def plot_article_distribution(topics,article_related,article_unrelated,fontsize=18):
     barWidth = 0.25
     n_topics=len(topics)
     fig,ax=plt.subplots(figsize=(12,8)) 
@@ -100,8 +100,8 @@ def plot_article_distribution(topics,article_related,article_unrelated):
     br1 = np.arange(n_topics) 
     br2 = [x + barWidth for x in br1] 
 
-    bar_related=ax.bar(br1,cnt_articles_related, color ='#1f78b4', width = barWidth, edgecolor ='grey', label ='related',alpha=1) 
-    bar_unrelated=ax.bar(br2,cnt_articles_unrelated, color='#ff7f00', width = barWidth,edgecolor ='grey', label ='unrelated',alpha=1)
+    bar_related=ax.bar(br1,cnt_articles_related, color ='orange', width = barWidth,edgecolor='black',label ='Related') 
+    bar_unrelated=ax.bar(br2,cnt_articles_unrelated, color='tomato', width = barWidth,edgecolor='black',label ='Unrelated')
     
     for i in range(len(bar_related)):
         bar_re=bar_related[i]
@@ -110,34 +110,36 @@ def plot_article_distribution(topics,article_related,article_unrelated):
         val_unre=bar_unre.get_height()
         ax.text(
             bar_re.get_x() + bar_re.get_width() / 2,  # x position of the text
-            val_re+ 0.5,                         # y position slightly above the bar
+            val_re+ 0.15,                         # y position slightly above the bar
             f"{val_re}",                          # label text (the height of the bar)
             ha="center",                        # center horizontally
             va="bottom",                        # align text at the bottom
-            fontweight="bold"                   # make text bold (optional)
+            fontweight="bold",                   # make text bold (optional)
+            fontsize=fontsize
         )
         ax.text(
             bar_unre.get_x() + bar_unre.get_width() / 2,  # x position of the text
-            val_unre+ 0.5,                         # y position slightly above the bar
+            val_unre+ 0.15,                         # y position slightly above the bar
             f"{val_unre}",                          # label text (the height of the bar)
             ha="center",                        # center horizontally
             va="bottom",                        # align text at the bottom
-            fontweight="bold"                   # make text bold (optional)
-        )
+            fontweight="bold",                   # make text bold (optional)
+            fontsize=fontsize
+            )
 
     ax.grid(color ='grey',
         linestyle ='-', linewidth = 0.5,
         alpha = 0.2)
 
-    ax.set_ylabel('Number of articles', fontweight ='bold', fontsize = 15) 
-    ax.set_xticks([r + barWidth/2 for r in range(len(cnt_articles_related))],topics,fontweight ='bold',fontsize=15)
+    ax.set_ylabel('Number of articles', fontweight ='bold', fontsize = fontsize) 
+    ax.set_xticks([r + barWidth/2 for r in range(len(cnt_articles_related))],topics,fontweight ='bold',fontsize=fontsize)
     ax.yaxis.set_major_locator(MaxNLocator(integer=True))
 
-    ax.legend(loc='upper center',prop={'weight':'bold','size':15})
+    ax.legend(loc='upper center',prop={'weight':'bold','size':fontsize})
     plt.tight_layout()
     plt.savefig('../figures/article_barplot.pdf')
 
-def plot_word_distribution(topics,word_count,fig_name='articles'):
+def plot_word_distribution(topics,word_count,fig_name='articles',fontsize=18):
     n_topics=len(topics)
     fig,ax=plt.subplots(figsize=(12,8))
     colors = ['peachpuff', 'orange', 'tomato']
@@ -150,10 +152,10 @@ def plot_word_distribution(topics,word_count,fig_name='articles'):
 
     legend1 = plt.Line2D([0], [0], color=colors[1], lw=4, label='Related')
     legend2 = plt.Line2D([0], [0], color=colors[2], lw=4, label='Unrelated')
-    ax.legend(handles=[legend1, legend2], loc='upper center',prop={'weight':'bold','size':15})
+    ax.legend(handles=[legend1, legend2], loc='upper center',prop={'weight':'bold','size':fontsize})
 
-    ax.set_xticks(np.arange(1.5,n_topics*3+1.5,3),topics,fontsize=15,fontweight='bold')
-    ax.set_ylabel(f"Number of words for {fig_name}",fontsize=15,fontweight='bold')
+    ax.set_xticks(np.arange(1.5,n_topics*3+1.5,3),topics,fontsize=fontsize,fontweight='bold')
+    ax.set_ylabel(f"Number of words for {fig_name}",fontsize=fontsize,fontweight='bold')
     
     ax.grid(color ='grey',
         linestyle ='-', linewidth = 0.5,

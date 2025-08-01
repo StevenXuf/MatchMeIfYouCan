@@ -1,0 +1,32 @@
+
+The following have been reloaded with a version change:
+  1) env/release/2024.1 => env/release/2023.1
+
+5047
+157117
+**********blip**********
+reshape position embedding from 576 to 196
+load checkpoint from https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_retrieval_coco.pth
+Traceback (most recent call last):
+  File "/mnt/tier2/users/u101139/D4H/scripts/plot_examples.py", line 220, in <module>
+    plot_examples(args.model,task,[images[idx] for idx in rand_img_ids],[re.sub(r'[\r\n]+',' ',article_sum[idx]) for idx in rand_txt_ids])
+  File "/mnt/tier2/users/u101139/D4H/scripts/plot_examples.py", line 141, in plot_examples
+    fig=plot_img2txt(images,retrieved_items)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/tier2/users/u101139/D4H/scripts/plot_examples.py", line 80, in plot_img2txt
+    ax.set_sticks([])
+    ^^^^^^^^^^^^^
+AttributeError: 'Axes' object has no attribute 'set_sticks'. Did you mean: 'set_xticks'?
+4729
+153555
+**********clip**********
+Traceback (most recent call last):
+  File "/mnt/tier2/users/u101139/D4H/scripts/plot_examples.py", line 220, in <module>
+    plot_examples(args.model,task,[images[idx] for idx in rand_img_ids],[re.sub(r'[\r\n]+',' ',article_sum[idx]) for idx in rand_txt_ids])
+  File "/mnt/tier2/users/u101139/D4H/scripts/plot_examples.py", line 141, in plot_examples
+    fig=plot_img2txt(images,retrieved_items)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/tier2/users/u101139/D4H/scripts/plot_examples.py", line 80, in plot_img2txt
+    ax.set_sticks([])
+    ^^^^^^^^^^^^^
+AttributeError: 'Axes' object has no attribute 'set_sticks'. Did you mean: 'set_xticks'?

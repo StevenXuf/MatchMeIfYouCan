@@ -4,6 +4,7 @@ import math
 import json
 import os
 import re
+import textwrap
 import matplotlib.pyplot as plt
 import torchvision.transforms as transforms
 import numpy as np
@@ -34,18 +35,24 @@ def plot_txt2img(texts,retrieved_images):
         block_subgs = main_gs[i].subgridspec(2, n_col, hspace=0, wspace=0,height_ratios=[2,3])
 
         ax_top = fig.add_subplot(block_subgs[0, :])
-        ax_top.set_facecolor('#EEEEEE')
-        ax_top.text(.5,.5,texts[i],ha='center',va='center',fontsize=15)
-        ax_top.set_ylabel(f'Query {i+1}',fontdict=dict(weight='bold',size=18))
+        #ax_top.set_facecolor('#EEEEEE')
+
+        ax_top.text(.01,.5,textwrap.fill(texts[i], width=120),ha='left',va='center',transform=ax_top.transAxes,fontsize=15,fontstyle='italic')
+        
         ax_top.set_xticks([])
         ax_top.set_yticks([])
+        for spine in ['top','bottom','left','right']:
+            ax_top.spines[spine].set_visible(False)
+
+        ax_top.set_ylabel(f'Query {i+1}',fontdict=dict(weight='bold',size=18))
 
         for j in range(n_col):
             ax = fig.add_subplot(block_subgs[1,j])
             ax.imshow(retrieved_images[i][j])
             #ax.set_title(f"Plot {col+1}")
-            ax.set_xticks([])
-            ax.set_yticks([])
+            #ax.set_xticks([])
+            #ax.set_yticks([])
+            ax.axis('off')
     margin_config={
                     'left':0.05,
                     'right':.95,
@@ -69,15 +76,24 @@ def plot_img2txt(images,retrieved_texts):
             if j==0:
                 ax= fig.add_subplot(block_subgs[:,j])
                 ax.imshow(images[i])
-                ax.set_ylabel(f'Query {i+1}',fontdict=dict(weight='bold',size=18))
+                
+                for spine in ['top','bottom','left','right']:
+                    ax.spines[spine].set_visible(False)
                 ax.set_xticks([])
                 ax.set_yticks([])
+                ax.set_ylabel(f'Query {i+1}',fontdict=dict(weight='bold',size=18))
             else:
                 ax= fig.add_subplot(block_subgs[j-1,1:])
-                ax.text(.5,.5,retrieved_texts[i][j-1],ha='center',va='center',fontsize=15)
+                ax.text(.01,.5,textwrap.fill(retrieved_texts[i][j-1], width=120),ha='left',va='center',transform=ax.transAxes,fontsize=15,fontstyle='italic')
                 ax.set_xticks([])
                 ax.set_yticks([])
-                ax.set_facecolor('#EEEEEE')
+               
+                ax.spines['left'].set_edgecolor('gray')
+                for spine in ['top', 'bottom', 'right']:
+                    ax.spines[spine].set_visible(False)
+                
+                if j!=n_col-1:
+                    ax.axhline(y=0, color='gray', linewidth=1,xmin=0, xmax=1)
 
     margin_config={
                     'left':0.05,
@@ -88,7 +104,6 @@ def plot_img2txt(images,retrieved_texts):
     plt.subplots_adjust(**margin_config)
 
     return fig
-
 
 def cut_caps(string,threshold=5):
     tokens=string.strip().split(' ')
@@ -113,6 +128,27 @@ def cut_caps(string,threshold=5):
         res+=' [...]'
     return res
 
+def cut_caps2(string):
+    tokens=string.strip().split(' ')
+    if tokens[-1]=='.':
+        tokens[-2]+='.'
+        tokens.pop()
+    leng=len(tokens)
+    res=''
+    cnt=0
+    if leng>50:
+        tokens=tokens[:50]
+
+    for token in tokens:
+        cnt+=1
+        if cnt==leng:
+            res+=token
+        else:
+            res+=token+' '
+    if leng>50:
+        res+=' [...]'
+    return res
+
 def plot_examples(model,task,images,texts,k=5):
     features=extract_features({'images':images,'texts':texts},model)
     img_embed,cap_embed=features['image features'].cpu(),features['text features'].cpu()
@@ -120,7 +156,7 @@ def plot_examples(model,task,images,texts,k=5):
         row_length=14
     else:
         row_length=13
-    texts=list(map(cut_caps,texts,[row_length]*len(texts)))
+    texts=list(map(cut_caps2,texts))
 
     cosine=pairwise_cosine_similarity(img_embed,cap_embed)
     if task!='img2txt':
@@ -183,9 +219,9 @@ if __name__=='__main__':
     images=list(map(lambda img:(img*255).to(torch.uint8).permute(1,2,0),images))
     
     if args.model.lower()=='clip':
-        seed=66
+        seed=6
     else:
-        seed=88
+        seed=8
    
     path=f'../data/index_{args.model.lower()}.json'
     if os.path.exists(path):
