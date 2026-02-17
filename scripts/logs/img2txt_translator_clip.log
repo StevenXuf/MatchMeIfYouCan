@@ -1,0 +1,51 @@
+[nltk_data] Downloading package stopwords to
+[nltk_data]     /home/users/u101139/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+[nltk_data] Downloading package punkt to
+[nltk_data]     /home/users/u101139/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+[nltk_data] Downloading package punkt_tab to
+[nltk_data]     /home/users/u101139/nltk_data...
+[nltk_data]   Package punkt_tab is already up-to-date!
+INFO 11-02 20:00:55 [__init__.py:235] Automatically detected platform cuda.
+You are a helpful assistant specialized in multilingual translation.            Your job is to translate the given meta text to fluent and accurate English, while preserving the original meaning.            Note that the meta text might have formatting issues, extraneous symbols, and other common OCR errors, thus you must fix these problems like a professional translator in such cases. If the metadata is empty, the translation should also be empty. If the metadata is already in English, return the original English after fixing errors in text.            I will give you some texts of different lengths and you need to translate these data to English.            Return only the translated text in English in a clear and structured form.
+nuclear accidents
+nuclear waste
+protest
+environmentalism
+path ../data/impresso/subset/processed_batch_translate
+Whole dataset has been processed. Terminated.
+16
+16
+  0%|          | 0/43 [00:00<?, ?it/s]  2%|▏         | 1/43 [00:00<00:10,  4.17it/s]  5%|▍         | 2/43 [00:00<00:10,  4.00it/s] 16%|█▋        | 7/43 [00:00<00:02, 15.45it/s] 23%|██▎       | 10/43 [00:00<00:01, 18.42it/s] 30%|███       | 13/43 [00:00<00:01, 20.15it/s] 37%|███▋      | 16/43 [00:00<00:01, 21.72it/s] 44%|████▍     | 19/43 [00:01<00:01, 21.36it/s] 51%|█████     | 22/43 [00:01<00:01, 18.51it/s] 58%|█████▊    | 25/43 [00:01<00:00, 18.16it/s] 65%|██████▌   | 28/43 [00:01<00:00, 19.23it/s] 72%|███████▏  | 31/43 [00:01<00:00, 20.61it/s] 79%|███████▉  | 34/43 [00:01<00:00, 22.69it/s] 86%|████████▌ | 37/43 [00:01<00:00, 23.83it/s] 95%|█████████▌| 41/43 [00:02<00:00, 25.34it/s]100%|██████████| 43/43 [00:02<00:00, 18.54it/s]
+  0%|          | 0/74 [00:00<?, ?it/s]  4%|▍         | 3/74 [00:00<00:02, 24.67it/s]  9%|▉         | 7/74 [00:00<00:02, 32.36it/s] 15%|█▍        | 11/74 [00:00<00:02, 27.47it/s] 19%|█▉        | 14/74 [00:00<00:02, 26.44it/s] 23%|██▎       | 17/74 [00:00<00:02, 22.48it/s] 27%|██▋       | 20/74 [00:00<00:02, 20.34it/s] 31%|███       | 23/74 [00:01<00:02, 20.26it/s] 35%|███▌      | 26/74 [00:01<00:02, 21.58it/s] 41%|████      | 30/74 [00:01<00:01, 23.76it/s] 46%|████▌     | 34/74 [00:01<00:01, 24.46it/s] 50%|█████     | 37/74 [00:01<00:01, 19.16it/s] 54%|█████▍    | 40/74 [00:01<00:01, 19.15it/s] 58%|█████▊    | 43/74 [00:02<00:01, 18.15it/s] 62%|██████▏   | 46/74 [00:02<00:01, 19.74it/s] 66%|██████▌   | 49/74 [00:02<00:01, 19.19it/s] 72%|███████▏  | 53/74 [00:02<00:00, 23.12it/s] 76%|███████▌  | 56/74 [00:02<00:00, 19.67it/s] 80%|███████▉  | 59/74 [00:02<00:00, 20.91it/s] 84%|████████▍ | 62/74 [00:02<00:00, 20.71it/s] 88%|████████▊ | 65/74 [00:03<00:00, 19.78it/s] 92%|█████████▏| 68/74 [00:03<00:00, 21.15it/s] 96%|█████████▌| 71/74 [00:03<00:00, 17.41it/s] 99%|█████████▊| 73/74 [00:03<00:00, 16.78it/s]100%|██████████| 74/74 [00:03<00:00, 20.65it/s]
+  0%|          | 0/43 [00:00<?, ?it/s]  2%|▏         | 1/43 [00:00<00:06,  6.52it/s] 49%|████▉     | 21/43 [00:00<00:00, 97.56it/s]100%|██████████| 43/43 [00:00<00:00, 127.95it/s]
+  0%|          | 0/74 [00:00<?, ?it/s] 38%|███▊      | 28/74 [00:00<00:00, 275.17it/s] 77%|███████▋  | 57/74 [00:00<00:00, 281.26it/s]100%|██████████| 74/74 [00:00<00:00, 285.72it/s]
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+**********clip**********
+**********img2txt**********
+torch.Size([22, 117])
+┌───────────┬─────────┐
+│ Metric    │ Value   │
+├───────────┼─────────┤
+│ P@1      │  31.82% │
+│ R@1      │   2.89% │
+│ MRR@1    │  31.82% │
+│ mAP@1    │  31.82% │
+└───────────┴─────────┘
+┌───────────┬─────────┐
+│ Metric    │ Value   │
+├───────────┼─────────┤
+│ P@5      │  21.82% │
+│ R@5      │   9.92% │
+│ MRR@5    │  44.24% │
+│ mAP@5    │  43.15% │
+└───────────┴─────────┘
+┌───────────┬─────────┐
+│ Metric    │ Value   │
+├───────────┼─────────┤
+│ P@10     │  17.73% │
+│ R@10     │  16.12% │
+│ MRR@10   │  46.22% │
+│ mAP@10   │  41.59% │
+└───────────┴─────────┘

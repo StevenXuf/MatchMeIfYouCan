@@ -1,15 +1,13 @@
-import os
 import base64
 import torch
 import torchvision.transforms as transforms
 from io import BytesIO
-from PIL import Image
 from openai import OpenAI
 
 import config
 
 from read_posters import get_file_path
-from text_manipulation import get_contents,denest
+from text_manipulation import get_contents
 from poster_manipulation import get_poster_subset,get_precision_recall,img_transform
 from cross_modal_retrieval import get_targets
 
@@ -39,7 +37,7 @@ def get_img2txt_results(image,text_list,api_key):
             {"role": "system", "content": "You are a helpful asistant that solves problems and gives answers in a concise,accurate, and brief way."},
             {"role": "user", "content": [
                 {"type": "text", "text": f"I want you to judge the similarity of an given image with respect to a list of textual descriptions. You should return the index order of the 10 most similar decsriptions where the most similar text to the image shall be in the first position and the most dissimilar one shall be in the last. Use json format for your answer. Here is the text list: {text_list}."},
-                {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}}
+                {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{pil_to_base64(image)}"}}
             ]}
         ],
         max_tokens=50,
@@ -79,21 +77,20 @@ if __name__=='__main__':
     n_samples=5
     _,articles,titles=get_contents(config.english_topics,config.system_role_summarizer,config.qwen,is_meta=False)
     
-    task='txt2img'
-    print(task)
     transform=transforms.ToPILImage()
     _,transform2,transform3=img_transform()
     poster=get_poster_subset(config.in_file,config.out_file,config.anno_file)
     images=list(map(lambda x: transform(transform2(x).permute(2,0,1)),poster['images']))
     
-    targets=get_targets(poster,articles,task)
-    if task=='img2txt':
-        preds=convert_idx_to_score(config.img2txt_top10,targets.size())
-    else:
-        preds=convert_idx_to_score(config.txt2img_top10,targets.size())
-    
-    for k in [1,5,10]:
-        get_precision_recall(preds,targets,k)
+    for task in ['img2txt','txt2img']:
+        targets=get_targets(poster,articles,task)
+        if task=='img2txt':
+            preds=convert_idx_to_score(config.img2txt_top10,targets.size())
+        else:
+            preds=convert_idx_to_score(config.txt2img_top10,targets.size())
+        
+        for k in [1,5,10]:
+            get_precision_recall(preds,targets,k)
     
     '''
     #img2txt

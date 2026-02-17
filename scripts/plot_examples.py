@@ -6,12 +6,14 @@ import os
 import re
 import textwrap
 import matplotlib.pyplot as plt
-import torchvision.transforms as transforms
+import matplotlib.patches as patches
 import numpy as np
+
+from transformers import AutoTokenizer, AutoModelForCausalLM
 
 from tqdm import tqdm
 from matplotlib.gridspec import GridSpec
-from datasets import Dataset,load_from_disk
+from datasets import load_from_disk
 from torchmetrics.functional.pairwise import pairwise_cosine_similarity
 
 from read_posters import get_all_poster
@@ -19,13 +21,19 @@ from poster_manipulation import extract_features
 
 import config
 
-def get_data(path='../data/impresso/fullset'):
+def get_data(type,path='../data/impresso/fullset'):
+    if type.lower()=='clean':
+        article=load_from_disk(f'{path}/processed_batch_clean')
+    elif type.lower()=='sum':
+        article=load_from_disk(f'{path}/processed_batch_sum')
+    elif type.lower()=='translate':
+        article=load_from_disk(f'{path}/processed_batch_translate')
+    else:
+        raise Exception('No such a data type.')
     images,captions=get_all_poster()
-    article_clean=load_from_disk(f'{path}/processed_batch_clean')['clean_data']
-    article_sum=load_from_disk(f'{path}/processed_batch_sum')['clean_data']
-    return images,article_clean,article_sum 
+    return images,article
 
-def plot_txt2img(texts,retrieved_images):
+def plot_txt2img(texts,retrieved_images,index):
     n_block=len(texts)
     n_col=len(retrieved_images)
     fig = plt.figure(figsize=(3*n_col, 5*n_block))
@@ -50,9 +58,13 @@ def plot_txt2img(texts,retrieved_images):
             ax = fig.add_subplot(block_subgs[1,j])
             ax.imshow(retrieved_images[i][j])
             #ax.set_title(f"Plot {col+1}")
-            #ax.set_xticks([])
-            #ax.set_yticks([])
-            ax.axis('off')
+            ax.set_xticks([])
+            ax.set_yticks([])
+            if index[i][j] == 1:
+                for spine in ax.spines.values():
+                    spine.set_color('green')
+                    spine.set_linewidth(5)
+
     margin_config={
                     'left':0.05,
                     'right':.95,
@@ -63,14 +75,15 @@ def plot_txt2img(texts,retrieved_images):
     
     return fig
 
-def plot_img2txt(images,retrieved_texts):
+def plot_img2txt(images,retrieved_texts,index):
     n_block=len(images)
     n_col=6
-    fig = plt.figure(figsize=(3*n_col, 6*n_block))
+    fig = plt.figure(figsize=(3*(n_col+1), 6*n_block))
     main_gs = GridSpec(n_block, 1, figure=fig, hspace=0.03)  # Controls spacing BETWEEN blocks
 
     for i in range(n_block):
-        block_subgs = main_gs[i].subgridspec(5, n_col, hspace=0, wspace=0)
+        width_ratios=[2]+[1]*(n_col-1)
+        block_subgs = main_gs[i].subgridspec(5, n_col, hspace=0, wspace=0, width_ratios=width_ratios)
         
         for j in range(n_col):
             if j==0:
@@ -84,16 +97,16 @@ def plot_img2txt(images,retrieved_texts):
                 ax.set_ylabel(f'Query {i+1}',fontdict=dict(weight='bold',size=18))
             else:
                 ax= fig.add_subplot(block_subgs[j-1,1:])
-                ax.text(.01,.5,textwrap.fill(retrieved_texts[i][j-1], width=120),ha='left',va='center',transform=ax.transAxes,fontsize=15,fontstyle='italic')
+                ax.text(.01,.5,textwrap.fill(retrieved_texts[i][j-1], width=120),ha='left',va='center',transform=ax.transAxes,fontsize=15,fontstyle='italic',color='green' if index[i][j-1]==1 else 'black')
                 ax.set_xticks([])
                 ax.set_yticks([])
                
                 ax.spines['left'].set_edgecolor('gray')
-                for spine in ['top', 'bottom', 'right']:
+                for spine in ['top', 'bottom', 'right','left']:
                     ax.spines[spine].set_visible(False)
                 
                 if j!=n_col-1:
-                    ax.axhline(y=0, color='gray', linewidth=1,xmin=0, xmax=1)
+                    ax.axhline(y=0, color='gray', linewidth=1, xmin=0, xmax=1)
 
     margin_config={
                     'left':0.05,
@@ -149,8 +162,30 @@ def cut_caps2(string):
         res+=' [...]'
     return res
 
-def plot_examples(model,task,images,texts,k=5):
-    features=extract_features({'images':images,'texts':texts},model)
+def get_expert_labels(model,task):
+    if task=='img2txt':
+        if model.lower()=='clip':
+            index = config.i2t_clip 
+        elif model.lower()=='blip':
+            index = config.i2t_blip
+        elif model.lower()=='mclip':
+            index = config.i2t_mclip
+        else:
+            raise Exception('No such a model.')
+    elif task=='txt2img':
+        if model.lower()=='clip':
+            index = config.t2i_clip 
+        elif model.lower()=='blip':
+            index = config.t2i_blip
+        elif model.lower()=='mclip':
+            index = config.t2i_mclip
+        else:
+            raise Exception('No such a model.')
+    else:
+        raise Exception('No such a task.')
+    return index
+def plot_examples(model,task,images,texts,k=5,seed=42,device=0):
+    features=extract_features({'images':images,'texts':texts},model,device=device)
     img_embed,cap_embed=features['image features'].cpu(),features['text features'].cpu()
     if task=='txt2img':
         row_length=14
@@ -166,13 +201,15 @@ def plot_examples(model,task,images,texts,k=5):
     
     if task=='img2txt':
         nrow=len(images)
+        index = get_expert_labels(model, task)
         retrieved_items=[[texts[item] for item in items] for items in ids]
-        fig=plot_img2txt(images,retrieved_items)
+        fig=plot_img2txt(images,retrieved_items,index)
     else:
         nrow=len(texts)
+        index = get_expert_labels(model, task)
         retrieved_items=[[images[item] for item in items] for items in ids]
-        fig=plot_txt2img(texts,retrieved_items) 
-    fig.savefig(f'../figures/retrieval_example_{model}_{task}.pdf')
+        fig=plot_txt2img(texts,retrieved_items,index) 
+    fig.savefig(f'../figures/retrieval_example_{model}_{task}_{seed}.pdf')
     print('DONE.')
 
 
@@ -193,7 +230,7 @@ def get_index(model,images,texts,topics):
     cosine=pairwise_cosine_similarity(img_feats,txt_feats)
     img_ids=pick_top1(cosine)
     
-    size=10000
+    size=1000
     for i in tqdm(range(math.ceil(len(texts)/size))):
         intra_modal_features=extract_features({'images':[images[0]],'texts':[f'an article of {topic}' for topic in topics]+texts[size*i:size*(i+1)]},model)
         inter_cosine=pairwise_cosine_similarity(intra_modal_features['text features'][len(topics):],intra_modal_features['text features'][:len(topics)])
@@ -206,30 +243,35 @@ def get_index(model,images,texts,topics):
 def params():
     parser=argparse.ArgumentParser()
     parser.add_argument('model',type=str,help='clip or blip')
+    parser.add_argument('--type',type=str,default='sum',help='clean, sum, translate')
+    parser.add_argument('--device',type=int,default=0,help='device id')
+
     args=parser.parse_args()
 
     return args
 
-if __name__=='__main__':
-    n_examples=5
-    torch.manual_seed(42)
 
+if __name__=='__main__':
+    n_examples = 5
     args=params()
-    images,article_clean,article_sum=get_data()
+
+    images,article=get_data(args.type)
     images=list(map(lambda img:(img*255).to(torch.uint8).permute(1,2,0),images))
     
     if args.model.lower()=='clip':
         seed=6
-    else:
+    elif args.model.lower()=='blip':
         seed=8
-   
+    elif args.model.lower()=='mclip':
+        seed=42
+
     path=f'../data/index_{args.model.lower()}.json'
     if os.path.exists(path):
         with open(path,'r') as f:
             indices=json.load(f)
             img_ids,txt_ids=indices['img_ids'],indices['txt_ids']
     else:
-        img_ids,txt_ids=get_index(args.model,images,article_sum,config.english_topics)
+        img_ids,txt_ids=get_index(args.model,images,article['clean_data'],config.english_topics)
         with open(path,'w') as f:
             json.dump({'img_ids':img_ids,'txt_ids':txt_ids},f)
 
@@ -241,9 +283,32 @@ if __name__=='__main__':
             np.random.seed(6*seed)
             rand_img_ids=np.random.choice(img_ids,n_examples,replace=False)
             rand_txt_ids=np.random.choice(txt_ids,1000,replace=False)
+            article_subset = [re.sub(r'[\r\n]+',' ',article['clean_data'][int(idx)]) for idx in rand_txt_ids]
         else:
             np.random.seed(8*seed)
             rand_img_ids=np.random.choice(img_ids,1000,replace=False)
             rand_txt_ids=np.random.choice(txt_ids,n_examples,replace=False)
+            subset = [re.sub(r'[\r\n]+',' ',article['metadata'][int(idx)]) for idx in rand_txt_ids]
+            tokenizer = AutoTokenizer.from_pretrained(config.qwen)
+            qwen_model = AutoModelForCausalLM.from_pretrained(config.qwen,
+                                                            device_map=f"cuda:{args.device}",
+                                                            torch_dtype=torch.float16)
+            messages = [[
+                {"role": "system", "content": config.system_role_translator},
+                {"role": "user", "content": f'Translate the following to English: {article}'}] for article in subset]
+            article_subset = []
+            
+            for message in tqdm(messages):
+                text = tokenizer.apply_chat_template(message, tokenize=False, add_generation_prompt=True)
+                model_inputs = tokenizer(text, return_tensors="pt", padding=True).to(qwen_model.device)
+                generated_ids = qwen_model.generate(**model_inputs, max_new_tokens=45000)
+                generated_ids = [
+                    output_ids[len(input_ids):] for input_ids, output_ids in zip(model_inputs.input_ids, generated_ids)
+                ]
+                response = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
+                article_subset.append(response)
+                print(response)
+                
 
-        plot_examples(args.model,task,[images[idx] for idx in rand_img_ids],[re.sub(r'[\r\n]+',' ',article_sum[idx]) for idx in rand_txt_ids])
+
+        plot_examples(args.model,task,[images[int(idx)] for idx in rand_img_ids],article_subset,seed=seed,device=args.device)

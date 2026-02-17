@@ -7,10 +7,8 @@ from termcolor import colored
 import tempfile
 import pandas as pd
 import torch
-import multiprocessing
 import os
 import shutil
-import sys
 import logging
 import math
 
@@ -55,6 +53,7 @@ def clean_text(text_list,system_role,model_id,seed=42,n_gpu=4,batch_size=128,pat
     processed_path=f'{path}/processed_batch_{get_subfix(system_role)}'
     is_processed=os.path.exists(processed_path)
     if is_processed:
+        print(f"path {processed_path}")
         processed_dataset=load_from_disk(processed_path)
         processed_len=len(processed_dataset)
         whole_len=len(dataset)

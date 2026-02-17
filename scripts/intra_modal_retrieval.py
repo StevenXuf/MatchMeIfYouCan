@@ -8,7 +8,7 @@ import numpy as np
 
 import config
 from text_manipulation import get_contents,manipulate_texts,translate,lemmatize
-from feature_extractor import extract_feat_clip,extract_feat_blip
+from feature_extractor import extract_feat_clip,extract_feat_blip, extract_feat_mclip,extract_feat_mblip
 from poster_manipulation import get_precision_recall
 
 def compute_metrics_via_classic_methods(method,query,corpus,top_k=10):
@@ -122,7 +122,7 @@ def compute_results(method,query_type='queries_de',corpus_type='titles',text_tra
     if lemmatization:
         corpus=lemmatize(corpus)
 
-    if method=='clip' or method=='blip':
+    if method=='clip' or method=='blip' or method=='mclip' or method=='mblip':
         compute_metrics_via_features(method,query,corpus,config.top_k)
     elif method=='bow' or method=='tfidf':
         compute_metrics_via_classic_methods(method,query,corpus,config.top_k)

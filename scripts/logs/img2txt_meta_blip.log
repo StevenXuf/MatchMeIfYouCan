@@ -1,0 +1,48 @@
+[nltk_data] Downloading package stopwords to
+[nltk_data]     /home/users/u101139/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+[nltk_data] Downloading package punkt to
+[nltk_data]     /home/users/u101139/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+[nltk_data] Downloading package punkt_tab to
+[nltk_data]     /home/users/u101139/nltk_data...
+[nltk_data]   Package punkt_tab is already up-to-date!
+INFO 11-03 12:15:04 [__init__.py:235] Automatically detected platform cuda.
+You are a helpful assistant specialized in multilingual translation.            Your job is to translate the given meta text to fluent and accurate English, while preserving the original meaning.            Note that the meta text might have formatting issues, extraneous symbols, and other common OCR errors, thus you must fix these problems like a professional translator in such cases. If the metadata is empty, the translation should also be empty. If the metadata is already in English, return the original English after fixing errors in text.            I will give you some texts of different lengths and you need to translate these data to English.            Return only the translated text in English in a clear and structured form.
+nuclear accidents
+nuclear waste
+protest
+environmentalism
+  0%|          | 0/43 [00:00<?, ?it/s]  2%|▏         | 1/43 [00:00<00:18,  2.21it/s]  5%|▍         | 2/43 [00:00<00:13,  3.01it/s] 19%|█▊        | 8/43 [00:00<00:02, 13.07it/s] 26%|██▌       | 11/43 [00:01<00:02, 12.52it/s] 33%|███▎      | 14/43 [00:01<00:01, 14.96it/s] 40%|███▉      | 17/43 [00:01<00:01, 16.78it/s] 49%|████▉     | 21/43 [00:01<00:01, 17.55it/s] 53%|█████▎    | 23/43 [00:01<00:01, 15.96it/s] 63%|██████▎   | 27/43 [00:01<00:00, 19.04it/s] 70%|██████▉   | 30/43 [00:02<00:00, 18.56it/s] 77%|███████▋  | 33/43 [00:02<00:00, 20.78it/s] 84%|████████▎ | 36/43 [00:02<00:00, 22.18it/s] 91%|█████████ | 39/43 [00:02<00:00, 22.51it/s] 98%|█████████▊| 42/43 [00:02<00:00, 22.76it/s]100%|██████████| 43/43 [00:02<00:00, 16.00it/s]
+  0%|          | 0/74 [00:00<?, ?it/s]  3%|▎         | 2/74 [00:00<00:03, 19.57it/s]  9%|▉         | 7/74 [00:00<00:01, 36.12it/s] 15%|█▍        | 11/74 [00:00<00:02, 23.42it/s] 19%|█▉        | 14/74 [00:00<00:02, 23.11it/s] 23%|██▎       | 17/74 [00:00<00:02, 20.02it/s] 27%|██▋       | 20/74 [00:00<00:02, 19.61it/s] 31%|███       | 23/74 [00:01<00:02, 19.95it/s] 35%|███▌      | 26/74 [00:01<00:02, 21.69it/s] 41%|████      | 30/74 [00:01<00:01, 22.66it/s] 46%|████▌     | 34/74 [00:01<00:01, 23.47it/s] 50%|█████     | 37/74 [00:01<00:01, 18.63it/s] 54%|█████▍    | 40/74 [00:01<00:01, 18.91it/s] 58%|█████▊    | 43/74 [00:02<00:01, 17.78it/s] 62%|██████▏   | 46/74 [00:02<00:01, 19.55it/s] 66%|██████▌   | 49/74 [00:02<00:01, 18.38it/s] 73%|███████▎  | 54/74 [00:02<00:01, 18.29it/s] 78%|███████▊  | 58/74 [00:02<00:00, 20.65it/s] 82%|████████▏ | 61/74 [00:02<00:00, 20.83it/s] 86%|████████▋ | 64/74 [00:03<00:00, 20.34it/s] 91%|█████████ | 67/74 [00:03<00:00, 20.50it/s] 95%|█████████▍| 70/74 [00:03<00:00, 18.89it/s] 97%|█████████▋| 72/74 [00:03<00:00, 15.39it/s]100%|██████████| 74/74 [00:03<00:00, 19.97it/s]
+  0%|          | 0/43 [00:00<?, ?it/s]  2%|▏         | 1/43 [00:00<00:04,  9.72it/s] 63%|██████▎   | 27/43 [00:00<00:00, 152.67it/s]100%|██████████| 43/43 [00:00<00:00, 166.08it/s]
+  0%|          | 0/74 [00:00<?, ?it/s] 39%|███▉      | 29/74 [00:00<00:00, 284.11it/s] 80%|███████▉  | 59/74 [00:00<00:00, 290.92it/s]100%|██████████| 74/74 [00:00<00:00, 292.95it/s]
+**********blip**********
+reshape position embedding from 576 to 196
+load checkpoint from https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_retrieval_coco.pth
+**********img2txt**********
+torch.Size([22, 117])
+┌───────────┬─────────┐
+│ Metric    │ Value   │
+├───────────┼─────────┤
+│ P@1      │  22.73% │
+│ R@1      │   2.07% │
+│ MRR@1    │  22.73% │
+│ mAP@1    │  22.73% │
+└───────────┴─────────┘
+┌───────────┬─────────┐
+│ Metric    │ Value   │
+├───────────┼─────────┤
+│ P@5      │  16.36% │
+│ R@5      │   7.44% │
+│ MRR@5    │  31.97% │
+│ mAP@5    │  29.81% │
+└───────────┴─────────┘
+┌───────────┬─────────┐
+│ Metric    │ Value   │
+├───────────┼─────────┤
+│ P@10     │  16.82% │
+│ R@10     │  15.29% │
+│ MRR@10   │  35.61% │
+│ mAP@10   │  29.69% │
+└───────────┴─────────┘

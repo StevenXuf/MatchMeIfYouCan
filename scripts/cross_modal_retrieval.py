@@ -1,7 +1,11 @@
+import os
 import torch
 import argparse
+import fire
+import pandas as pd
 
 from torchmetrics.functional.pairwise import pairwise_cosine_similarity
+from datasets import load_from_disk
 
 import config
 from poster_manipulation import get_poster_subset,extract_features,get_precision_recall
@@ -11,7 +15,7 @@ from clean_text_dataset import clean_text
 
 def compute_poster_caption_metrics(features,task='img2txt'):
     sim=pairwise_cosine_similarity(features['image features'].cpu(),features['text features'].cpu())
-    targets=torch.diag(torch.ones(features['image features'].size(0))).long()
+    targets=torch.eye(sim.size(0)).long()
 
     if task=='txt2img':
         sim=sim.T
@@ -34,11 +38,25 @@ def get_poster_metrics(is_translated=False):
     images,captions=get_all_poster()
     images=list(map(lambda img:(img*255).to(torch.uint8).permute(1,2,0),images))
     captions=list(map(lambda x: x.strip(' ').split(';')[0],captions))
+    print(len(captions), len(images))
 
     if is_translated:
-        dataset=clean_text(captions,config.system_role_translator,config.qwen,seed=42,n_gpu=1,batch_size=256,path='../data/LAKA_caps')
-        captions=dataset['clean_data']
+        path='../data/LAKA_caps'
+        if not os.path.exists(path):
+            dataset=clean_text(captions,config.system_role_translator,config.qwen,seed=42,n_gpu=1,batch_size=256,path=path)
+        else:
+            print(f"Loading translated captions from {path}")
+            dataset_path=f'{path}/processed_batch_translate'
+            dataset = load_from_disk(dataset_path)
+            #map(lambda x: {'metadata': x['metadata'],
+            #                                               #   'clean_data': x['clean_data']})
+        df = dataset.to_pandas()
+        print(df.shape)
+        df.set_index('metadata',inplace=True)
+        df = df[~df.index.duplicated(keep='first')]
+        captions = df.loc[captions]['clean_data'].tolist()
 
+    print(len(captions)==len(images))
     features=extract_features({'images':images,'texts':captions},args.model)
     compute_poster_caption_metrics(features,args.task)
 
@@ -83,15 +101,21 @@ def compute_poster_article_metrics(system_role,model_name,task,llm=config.qwen,i
     for k in [1,5,10]:
         get_precision_recall(preds,targets,k)
     
+def main(system_role,model_name,task,meta=False):
+    if system_role == 'translator':
+        system_role=config.system_role_translator
+    elif system_role == 'editor':
+        system_role=config.system_role_editor
+    elif system_role == 'summarizer':
+        system_role=config.system_role_summarizer
+
+    print(system_role)
+    compute_poster_article_metrics(system_role,model_name,task,is_meta=meta)
 
 if __name__=='__main__':
     #experiments for laka images and impresso articles
-    task='img2txt'
-    system_role=config.system_role_summarizer
-    model_name='blip'
-
-    compute_poster_article_metrics(system_role,model_name,task,is_meta=True)
+    # fire.Fire(main)
 
 
     #experiments for laka images and topics/captions
-    #get_poster_metrics(is_translated=True)
+    get_poster_metrics(is_translated=True)

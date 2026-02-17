@@ -1,31 +1,43 @@
 import math
 import os
-import numpy as np
 import torch
+import fire
 import matplotlib.pyplot as plt
 import pandas as pd
 
 from matplotlib.ticker import MaxNLocator
-from tqdm import tqdm
 from torchvision.transforms import v2
 from torchvision.transforms.functional import InterpolationMode
 from torchmetrics.functional.pairwise import pairwise_cosine_similarity
-from torchmetrics.retrieval import RetrievalRecall,RetrievalPrecision
+from torchmetrics.retrieval import RetrievalRecall, RetrievalPrecision, RetrievalMRR, RetrievalMAP
 
-from load_poster_data import load_data
 import config
-from feature_extractor import extract_feat_clip, extract_feat_blip
+from load_poster_data import load_data
+from feature_extractor import extract_feat_clip, extract_feat_blip, extract_feat_mclip, extract_feat_mblip
 
 def get_precision_recall(preds,tars,k):
     compute_precision=RetrievalPrecision(top_k=k)
     compute_recall=RetrievalRecall(top_k=k)
+    mrr_metric = RetrievalMRR(top_k=k)
+    map_metric = RetrievalMAP(top_k=k)
     
     idx=torch.tensor([[i]*tars.size(1) for i in range(0,tars.size(0))]) 
     
     precision_val=compute_precision(preds,tars,indexes=idx)
     recall_val=compute_recall(preds,tars,indexes=idx)
-    print(f'Top {k} precision: {precision_val.item()*100:.2f}')
-    print(f'Top {k} recall: {recall_val.item()*100:.2f}')
+
+    mrr = mrr_metric(preds,tars,indexes=idx)
+    map = map_metric(preds,tars,indexes=idx)
+
+    # Simple table with borders
+    print("┌───────────┬─────────┐")
+    print("│ Metric    │ Value   │")
+    print("├───────────┼─────────┤")
+    print(f"│ P@{k:<6} │ {precision_val.item()*100:>6.2f}% │")
+    print(f"│ R@{k:<6} │ {recall_val.item()*100:>6.2f}% │")
+    print(f"│ MRR@{k:<4} │ {mrr.item()*100:>6.2f}% │")
+    print(f"│ mAP@{k:<4} │ {map.item()*100:>6.2f}% │")
+    print("└───────────┴─────────┘")
 
 def get_poster_data(in_file,out_file):
     if os.path.exists(f'{out_file}'):
@@ -147,9 +159,9 @@ def plot_poster_with_title(imgs,titles,fig_name,ids):
     plt.savefig(f'../figures/{fig_name}_posters.pdf')
     print('DONE!')
 
-def extract_features(data,model):
+def extract_features(data,model,device=2):
     features={}
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = torch.device(f"cuda:{device}" if torch.cuda.is_available() else "cpu")
     txts=data['texts']
     _,transform2,transform3=img_transform()
     print('*'*10+model+'*'*10)
@@ -160,19 +172,29 @@ def extract_features(data,model):
     elif model.lower() == 'blip':
         imgs=list(map(transform3,data['images']))
         features['image features'],features['text features']=extract_feat_blip(imgs,txts,device)
+    elif model.lower() == 'mclip':
+        imgs=list(map(transform2,data['images']))
+        features['image features'],features['text features']=extract_feat_mclip(imgs,txts,device)
+    elif model.lower() == 'mblip':
+        imgs=data['images']
+        features['image features'],features['text features']=extract_feat_mblip(imgs,txts,device)
     else:
         raise Exception('No such a model.')
     return features
 
 def compute_cosine(images,topics,model_name):
     features=extract_features({'images':images,'texts':topics},model_name)
-    topic_image_scores=pairwise_cosine_similarity(features['text features'],features['image features']).cpu()
+    topic_image_scores=pairwise_cosine_similarity(features['text features'].cpu(), features['image features'].cpu())
     return topic_image_scores
 
-def plot_topic_img_sim(topics,images,model_name):
+def plot_topic_img_sim(lang_topics,images,model_name):
+    if lang_topics.lower()=='de':
+        topics=config.german_topics
+    elif lang_topics.lower()=='en':
+        topics=config.english_topics
     topic_image_scores=compute_cosine(images,topics,model_name)
     plt.figure(figsize=(18,4))
-    plt.imshow(topic_image_scores)
+    plt.imshow(topic_image_scores.float().cpu().numpy())
     plt.yticks(range(len(topics)), topics, fontsize=12,fontweight='bold')
     plt.xticks([])
     for i, image in enumerate(images):
@@ -188,27 +210,38 @@ def plot_topic_img_sim(topics,images,model_name):
     plt.ylim([len(topics) + 0.5, -2])
     
     plt.tight_layout()
-    plt.savefig(f'../figures/topic2img_sim_{model_name}_de.pdf')
+    plt.savefig(f'../figures/topic2img_sim_{model_name}_{lang_topics}.pdf')
     
     return topic_image_scores
 
-if __name__=='__main__':
+def main(model_name,topic_type,task):
     torch.manual_seed(0)
-    model_name='blip'
-    topics=config.english_topics
+    if topic_type.lower()=='de':
+        topics=config.german_topics
+    elif topic_type.lower()=='en':
+        topics=config.english_topics
+
     in_file,out_file,anno_file=config.in_file,config.out_file,config.anno_file
 
     poster=get_poster_data(in_file,out_file)
     subset=get_poster_subset(in_file,out_file,anno_file)
 
-    plot_poster_dist(poster['texts'])
-    plot_poster_with_title(poster['images'],poster['texts'],'laka',subset['ids'])
-    '''
-    preds=plot_topic_img_sim(topics,subset['images'],model_name).T
-    tars=torch.tensor(subset['anno'].to_numpy())
-    tars[tars==2]=1
-    print(preds)
-    print(tars)
-    for top_k in [1,5,10]:
-        get_precision_recall(preds.T,tars.T,top_k)
-    ''' 
+    plot_topic_img_sim(topic_type,subset['images'],model_name)
+
+    # plot_poster_dist(poster['texts'])
+    # plot_poster_with_title(poster['images'],poster['texts'],'laka',subset['ids'])
+
+    # preds=compute_cosine(subset['images'],topics,model_name)
+    # tars=torch.tensor(subset['anno'].to_numpy()).to(preds.device)
+    # tars[tars==2]=1
+    # if task.lower()=='txt2img':
+    #     preds=preds.T
+    #     tars=tars.T
+    # # print(preds)
+    # # print(tars)
+    # for top_k in [1,5,10]:
+    #     get_precision_recall(preds,tars,top_k)
+
+
+if __name__=='__main__':
+    fire.Fire(main)

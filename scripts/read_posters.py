@@ -22,7 +22,7 @@ def get_file_path(path):
     return poster_paths
 
 
-def get_poster_for_country(country,img_store_path='/project/home/p200630/Data/deduped'):
+def get_poster_for_country(country,img_store_path='/data/data_fxu/deduped'):
     country=country.capitalize()
     paths=get_file_path(img_store_path)
 
@@ -42,7 +42,7 @@ def get_poster_for_country(country,img_store_path='/project/home/p200630/Data/de
         sys.exit(1)
     return imgs,caps
 
-def get_all_poster(img_store_path='/project/home/p200630/Data/deduped'):
+def get_all_poster(img_store_path='/data/data_fxu/deduped'):
     paths=get_file_path(img_store_path)
     images=[]
     captions=[]

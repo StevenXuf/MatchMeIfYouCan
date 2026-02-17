@@ -1,0 +1,38 @@
+[nltk_data] Downloading package stopwords to /home/fxu/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+[nltk_data] Downloading package punkt to /home/fxu/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+[nltk_data] Downloading package punkt_tab to /home/fxu/nltk_data...
+[nltk_data]   Package punkt_tab is already up-to-date!
+INFO 11-22 19:31:21 [__init__.py:235] Automatically detected platform cuda.
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+5054 5054
+Loading translated captions from ../data/LAKA_caps
+(5054, 2)
+True
+**********clip**********
+**********txt2img**********
+┌───────────┬─────────┐
+│ Metric    │ Value   │
+├───────────┼─────────┤
+│ P@1      │  20.42% │
+│ R@1      │  20.42% │
+│ MRR@1    │  20.42% │
+│ mAP@1    │  20.42% │
+└───────────┴─────────┘
+┌───────────┬─────────┐
+│ Metric    │ Value   │
+├───────────┼─────────┤
+│ P@5      │   6.64% │
+│ R@5      │  33.22% │
+│ MRR@5    │  25.28% │
+│ mAP@5    │  25.28% │
+└───────────┴─────────┘
+┌───────────┬─────────┐
+│ Metric    │ Value   │
+├───────────┼─────────┤
+│ P@10     │   3.88% │
+│ R@10     │  38.84% │
+│ MRR@10   │  26.04% │
+│ mAP@10   │  26.04% │
+└───────────┴─────────┘
