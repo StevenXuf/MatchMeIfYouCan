@@ -1,3 +1,5 @@
+import os
+
 in_file='../data/swiss_poster_links.csv'
 out_file='../data/swiss_poster_data.pt'
 anno_file='../data/poster_anno.xlsx'
@@ -46,7 +48,7 @@ deepseek='deepseek-ai/DeepSeek-R1-Distill-Llama-8B'
 model_translate="Helsinki-NLP/opus-mt-de-en"
 qwen='Qwen/Qwen2.5-7B-Instruct-1M'
 
-api_key='XXXXXXXXXXXXXX'
+OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
 
 top_k=10
 
