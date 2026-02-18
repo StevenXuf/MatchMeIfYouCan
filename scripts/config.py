@@ -46,7 +46,7 @@ deepseek='deepseek-ai/DeepSeek-R1-Distill-Llama-8B'
 model_translate="Helsinki-NLP/opus-mt-de-en"
 qwen='Qwen/Qwen2.5-7B-Instruct-1M'
 
-api_key='REDACTED_OPENAI_KEY'
+api_key='XXXXXXXXXXXXXX'
 
 top_k=10
 
