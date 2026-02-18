@@ -1,8 +1,6 @@
-data/
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
 
-
-# Ignore local datasets
-data/
+# Ignore everything in data/
+/data/**/impresso
