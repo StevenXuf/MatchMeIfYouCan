@@ -1,52 +1,0 @@
-[nltk_data] Downloading package stopwords to
-[nltk_data]     /home/users/u101139/nltk_data...
-[nltk_data]   Package stopwords is already up-to-date!
-[nltk_data] Downloading package punkt to
-[nltk_data]     /home/users/u101139/nltk_data...
-[nltk_data]   Package punkt is already up-to-date!
-[nltk_data] Downloading package punkt_tab to
-[nltk_data]     /home/users/u101139/nltk_data...
-[nltk_data]   Package punkt_tab is already up-to-date!
-INFO 11-02 20:00:55 [__init__.py:235] Automatically detected platform cuda.
-You are a helpful assistant specialized in multilingual translation.            Your job is to translate the given meta text to fluent and accurate English, while preserving the original meaning.            Note that the meta text might have formatting issues, extraneous symbols, and other common OCR errors, thus you must fix these problems like a professional translator in such cases. If the metadata is empty, the translation should also be empty. If the metadata is already in English, return the original English after fixing errors in text.            I will give you some texts of different lengths and you need to translate these data to English.            Return only the translated text in English in a clear and structured form.
-nuclear accidents
-nuclear waste
-protest
-environmentalism
-path ../data/impresso/subset/processed_batch_translate
-Whole dataset has been processed. Terminated.
-16
-16
-  0%|          | 0/43 [00:00<?, ?it/s]  2%|▏         | 1/43 [00:00<00:10,  4.18it/s]  5%|▍         | 2/43 [00:00<00:10,  4.01it/s] 16%|█▋        | 7/43 [00:00<00:02, 15.46it/s] 23%|██▎       | 10/43 [00:00<00:01, 18.43it/s] 30%|███       | 13/43 [00:00<00:01, 20.19it/s] 37%|███▋      | 16/43 [00:00<00:01, 21.80it/s] 44%|████▍     | 19/43 [00:01<00:01, 21.44it/s] 51%|█████     | 22/43 [00:01<00:01, 18.61it/s] 58%|█████▊    | 25/43 [00:01<00:00, 18.28it/s] 65%|██████▌   | 28/43 [00:01<00:00, 19.38it/s] 72%|███████▏  | 31/43 [00:01<00:00, 20.75it/s] 79%|███████▉  | 34/43 [00:01<00:00, 22.84it/s] 86%|████████▌ | 37/43 [00:01<00:00, 23.98it/s] 95%|█████████▌| 41/43 [00:02<00:00, 25.51it/s]100%|██████████| 43/43 [00:02<00:00, 18.62it/s]
-  0%|          | 0/74 [00:00<?, ?it/s]  4%|▍         | 3/74 [00:00<00:02, 24.93it/s]  9%|▉         | 7/74 [00:00<00:02, 32.74it/s] 15%|█▍        | 11/74 [00:00<00:02, 27.72it/s] 19%|█▉        | 14/74 [00:00<00:02, 26.61it/s] 23%|██▎       | 17/74 [00:00<00:02, 22.55it/s] 27%|██▋       | 20/74 [00:00<00:02, 20.38it/s] 31%|███       | 23/74 [00:01<00:02, 20.35it/s] 35%|███▌      | 26/74 [00:01<00:02, 21.71it/s] 41%|████      | 30/74 [00:01<00:01, 23.91it/s] 46%|████▌     | 34/74 [00:01<00:01, 24.65it/s] 50%|█████     | 37/74 [00:01<00:01, 19.29it/s] 54%|█████▍    | 40/74 [00:01<00:01, 19.25it/s] 58%|█████▊    | 43/74 [00:02<00:01, 18.22it/s] 62%|██████▏   | 46/74 [00:02<00:01, 19.83it/s] 66%|██████▌   | 49/74 [00:02<00:01, 19.29it/s] 72%|███████▏  | 53/74 [00:02<00:00, 23.20it/s] 76%|███████▌  | 56/74 [00:02<00:00, 19.72it/s] 80%|███████▉  | 59/74 [00:02<00:00, 20.98it/s] 84%|████████▍ | 62/74 [00:02<00:00, 20.80it/s] 88%|████████▊ | 65/74 [00:03<00:00, 19.91it/s] 92%|█████████▏| 68/74 [00:03<00:00, 21.24it/s] 96%|█████████▌| 71/74 [00:03<00:00, 17.54it/s] 99%|█████████▊| 73/74 [00:03<00:00, 16.89it/s]100%|██████████| 74/74 [00:03<00:00, 20.76it/s]
-  0%|          | 0/43 [00:00<?, ?it/s]  2%|▏         | 1/43 [00:00<00:06,  6.52it/s] 49%|████▉     | 21/43 [00:00<00:00, 97.54it/s]100%|██████████| 43/43 [00:00<00:00, 128.44it/s]
-  0%|          | 0/74 [00:00<?, ?it/s] 38%|███▊      | 28/74 [00:00<00:00, 277.98it/s] 77%|███████▋  | 57/74 [00:00<00:00, 282.23it/s]100%|██████████| 74/74 [00:00<00:00, 287.19it/s]
-**********blip**********
-reshape position embedding from 576 to 196
-load checkpoint from https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_retrieval_coco.pth
-**********img2txt**********
-torch.Size([22, 117])
-┌───────────┬─────────┐
-│ Metric    │ Value   │
-├───────────┼─────────┤
-│ P@1      │  18.18% │
-│ R@1      │   1.65% │
-│ MRR@1    │  18.18% │
-│ mAP@1    │  18.18% │
-└───────────┴─────────┘
-┌───────────┬─────────┐
-│ Metric    │ Value   │
-├───────────┼─────────┤
-│ P@5      │  12.73% │
-│ R@5      │   5.79% │
-│ MRR@5    │  30.23% │
-│ mAP@5    │  26.97% │
-└───────────┴─────────┘
-┌───────────┬─────────┐
-│ Metric    │ Value   │
-├───────────┼─────────┤
-│ P@10     │  15.45% │
-│ R@10     │  14.05% │
-│ MRR@10   │  35.19% │
-│ mAP@10   │  27.03% │
-└───────────┴─────────┘

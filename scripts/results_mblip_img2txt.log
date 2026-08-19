@@ -1,41 +1,0 @@
-[nltk_data] Downloading package stopwords to /home/fxu/nltk_data...
-[nltk_data]   Package stopwords is already up-to-date!
-[nltk_data] Downloading package punkt to /home/fxu/nltk_data...
-[nltk_data]   Package punkt is already up-to-date!
-[nltk_data] Downloading package punkt_tab to /home/fxu/nltk_data...
-[nltk_data]   Package punkt_tab is already up-to-date!
-INFO 11-22 19:59:13 [__init__.py:235] Automatically detected platform cuda.
-Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
-5054 5054
-Loading translated captions from ../data/LAKA_caps
-(5054, 2)
-True
-**********mblip**********
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:06<00:06,  6.71s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:11<00:00,  5.77s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:11<00:00,  5.91s/it]
-Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
-Expanding inputs for image tokens in BLIP-2 should be done in processing. Please follow instruction here (https://gist.github.com/zucchini-nlp/e9f20b054fa322f84ac9311d9ab67042) to update your BLIP-2 model. Using processors without these attributes in the config is deprecated and will throw an error in v4.50.
-**********img2txt**********
-┌───────────┬─────────┐
-│ Metric    │ Value   │
-├───────────┼─────────┤
-│ P@1      │   0.00% │
-│ R@1      │   0.00% │
-│ MRR@1    │   0.00% │
-│ mAP@1    │   0.00% │
-└───────────┴─────────┘
-┌───────────┬─────────┐
-│ Metric    │ Value   │
-├───────────┼─────────┤
-│ P@5      │   0.01% │
-│ R@5      │   0.02% │
-│ MRR@5    │   0.02% │
-│ mAP@5    │   0.02% │
-└───────────┴─────────┘
-┌───────────┬─────────┐
-│ Metric    │ Value   │
-├───────────┼─────────┤
-│ P@10     │   0.01% │
-│ R@10     │   0.16% │
-│ MRR@10   │   0.03% │
-│ mAP@10   │   0.03% │
-└───────────┴─────────┘

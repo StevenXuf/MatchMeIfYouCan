@@ -1,51 +1,0 @@
-[nltk_data] Downloading package stopwords to
-[nltk_data]     /home/users/u101139/nltk_data...
-[nltk_data]   Package stopwords is already up-to-date!
-[nltk_data] Downloading package punkt to
-[nltk_data]     /home/users/u101139/nltk_data...
-[nltk_data]   Package punkt is already up-to-date!
-[nltk_data] Downloading package punkt_tab to
-[nltk_data]     /home/users/u101139/nltk_data...
-[nltk_data]   Package punkt_tab is already up-to-date!
-INFO 11-03 17:49:48 [__init__.py:235] Automatically detected platform cuda.
-You are a helpful assistant specialized in multilingual understanding.            Your job is to summarize the given meta text in a concise and accurate manner, while still being informative.            Note the meta text might have formatting issues, extraneous symbols, and other common OCR errors, thus you must fix these problems like a professional summarizer in such cases. If the metadata is empty, the summary should also be empty.            I will give you some texts of different lengths and you need to summarize these data.            Return only the summary within 76 tokens in English in a clear and structured form.
-nuclear accidents
-nuclear waste
-protest
-environmentalism
-path ../data/impresso/subset/processed_batch_sum
-Whole dataset has been processed. Terminated.
-16
-16
-  0%|          | 0/43 [00:00<?, ?it/s]  2%|▏         | 1/43 [00:00<00:14,  2.97it/s] 23%|██▎       | 10/43 [00:00<00:01, 28.19it/s] 42%|████▏     | 18/43 [00:00<00:00, 43.35it/s] 65%|██████▌   | 28/43 [00:00<00:00, 58.96it/s] 84%|████████▎ | 36/43 [00:00<00:00, 65.10it/s]100%|██████████| 43/43 [00:00<00:00, 51.98it/s]
-  0%|          | 0/74 [00:00<?, ?it/s]  9%|▉         | 7/74 [00:00<00:00, 69.84it/s] 22%|██▏       | 16/74 [00:00<00:00, 76.79it/s] 32%|███▏      | 24/74 [00:00<00:00, 73.41it/s] 45%|████▍     | 33/74 [00:00<00:00, 78.77it/s] 55%|█████▌    | 41/74 [00:00<00:00, 75.77it/s] 68%|██████▊   | 50/74 [00:00<00:00, 78.84it/s] 80%|███████▉  | 59/74 [00:00<00:00, 80.76it/s] 92%|█████████▏| 68/74 [00:00<00:00, 77.64it/s]100%|██████████| 74/74 [00:00<00:00, 78.35it/s]
-  0%|          | 0/43 [00:00<?, ?it/s] 60%|██████    | 26/43 [00:00<00:00, 254.84it/s]100%|██████████| 43/43 [00:00<00:00, 262.19it/s]
-  0%|          | 0/74 [00:00<?, ?it/s] 36%|███▋      | 27/74 [00:00<00:00, 264.94it/s] 74%|███████▍  | 55/74 [00:00<00:00, 269.72it/s]100%|██████████| 74/74 [00:00<00:00, 275.78it/s]
-Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
-**********mclip**********
-**********txt2img**********
-torch.Size([117, 22])
-┌───────────┬─────────┐
-│ Metric    │ Value   │
-├───────────┼─────────┤
-│ P@1      │  12.82% │
-│ R@1      │   2.41% │
-│ MRR@1    │  12.82% │
-│ mAP@1    │  12.82% │
-└───────────┴─────────┘
-┌───────────┬─────────┐
-│ Metric    │ Value   │
-├───────────┼─────────┤
-│ P@5      │  11.45% │
-│ R@5      │   9.62% │
-│ MRR@5    │  18.40% │
-│ mAP@5    │  17.91% │
-└───────────┴─────────┘
-┌───────────┬─────────┐
-│ Metric    │ Value   │
-├───────────┼─────────┤
-│ P@10     │  10.94% │
-│ R@10     │  16.82% │
-│ MRR@10   │  18.55% │
-│ mAP@10   │  15.97% │
-└───────────┴─────────┘

@@ -1,47 +1,0 @@
-[nltk_data] Downloading package stopwords to
-[nltk_data]     /home/users/u101139/nltk_data...
-[nltk_data]   Package stopwords is already up-to-date!
-[nltk_data] Downloading package punkt to
-[nltk_data]     /home/users/u101139/nltk_data...
-[nltk_data]   Package punkt is already up-to-date!
-[nltk_data] Downloading package punkt_tab to
-[nltk_data]     /home/users/u101139/nltk_data...
-[nltk_data]   Package punkt_tab is already up-to-date!
-INFO 11-03 12:15:04 [__init__.py:235] Automatically detected platform cuda.
-You are a helpful assistant specialized in multilingual translation.            Your job is to translate the given meta text to fluent and accurate English, while preserving the original meaning.            Note that the meta text might have formatting issues, extraneous symbols, and other common OCR errors, thus you must fix these problems like a professional translator in such cases. If the metadata is empty, the translation should also be empty. If the metadata is already in English, return the original English after fixing errors in text.            I will give you some texts of different lengths and you need to translate these data to English.            Return only the translated text in English in a clear and structured form.
-nuclear accidents
-nuclear waste
-protest
-environmentalism
-  0%|          | 0/43 [00:00<?, ?it/s]  2%|▏         | 1/43 [00:00<00:18,  2.21it/s]  5%|▍         | 2/43 [00:00<00:13,  3.02it/s] 19%|█▊        | 8/43 [00:00<00:02, 13.12it/s] 26%|██▌       | 11/43 [00:01<00:02, 12.55it/s] 33%|███▎      | 14/43 [00:01<00:01, 15.01it/s] 40%|███▉      | 17/43 [00:01<00:01, 16.85it/s] 49%|████▉     | 21/43 [00:01<00:01, 17.63it/s] 53%|█████▎    | 23/43 [00:01<00:01, 16.04it/s] 63%|██████▎   | 27/43 [00:01<00:00, 19.13it/s] 70%|██████▉   | 30/43 [00:02<00:00, 18.69it/s] 77%|███████▋  | 33/43 [00:02<00:00, 20.92it/s] 84%|████████▎ | 36/43 [00:02<00:00, 22.29it/s] 91%|█████████ | 39/43 [00:02<00:00, 22.61it/s] 98%|█████████▊| 42/43 [00:02<00:00, 22.86it/s]100%|██████████| 43/43 [00:02<00:00, 16.07it/s]
-  0%|          | 0/74 [00:00<?, ?it/s]  3%|▎         | 2/74 [00:00<00:03, 19.48it/s]  9%|▉         | 7/74 [00:00<00:01, 36.06it/s] 15%|█▍        | 11/74 [00:00<00:02, 23.44it/s] 19%|█▉        | 14/74 [00:00<00:02, 23.17it/s] 23%|██▎       | 17/74 [00:00<00:02, 20.10it/s] 27%|██▋       | 20/74 [00:00<00:02, 19.69it/s] 31%|███       | 23/74 [00:01<00:02, 20.07it/s] 35%|███▌      | 26/74 [00:01<00:02, 21.81it/s] 41%|████      | 30/74 [00:01<00:01, 22.72it/s] 46%|████▌     | 34/74 [00:01<00:01, 23.52it/s] 50%|█████     | 37/74 [00:01<00:01, 18.68it/s] 54%|█████▍    | 40/74 [00:01<00:01, 18.97it/s] 58%|█████▊    | 43/74 [00:02<00:01, 17.85it/s] 62%|██████▏   | 46/74 [00:02<00:01, 19.65it/s] 66%|██████▌   | 49/74 [00:02<00:01, 18.46it/s] 73%|███████▎  | 54/74 [00:02<00:01, 18.37it/s] 78%|███████▊  | 58/74 [00:02<00:00, 20.73it/s] 82%|████████▏ | 61/74 [00:02<00:00, 20.91it/s] 86%|████████▋ | 64/74 [00:03<00:00, 20.43it/s] 91%|█████████ | 67/74 [00:03<00:00, 20.61it/s] 95%|█████████▍| 70/74 [00:03<00:00, 19.00it/s] 97%|█████████▋| 72/74 [00:03<00:00, 15.46it/s]100%|██████████| 74/74 [00:03<00:00, 20.05it/s]
-  0%|          | 0/43 [00:00<?, ?it/s]  2%|▏         | 1/43 [00:00<00:04,  9.71it/s] 63%|██████▎   | 27/43 [00:00<00:00, 152.51it/s]100%|██████████| 43/43 [00:00<00:00, 165.63it/s]
-  0%|          | 0/74 [00:00<?, ?it/s] 39%|███▉      | 29/74 [00:00<00:00, 283.90it/s] 80%|███████▉  | 59/74 [00:00<00:00, 290.89it/s]100%|██████████| 74/74 [00:00<00:00, 293.21it/s]
-Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
-**********clip**********
-**********txt2img**********
-torch.Size([117, 22])
-┌───────────┬─────────┐
-│ Metric    │ Value   │
-├───────────┼─────────┤
-│ P@1      │   8.55% │
-│ R@1      │   0.92% │
-│ MRR@1    │   8.55% │
-│ mAP@1    │   8.55% │
-└───────────┴─────────┘
-┌───────────┬─────────┐
-│ Metric    │ Value   │
-├───────────┼─────────┤
-│ P@5      │  10.43% │
-│ R@5      │   6.32% │
-│ MRR@5    │  13.53% │
-│ mAP@5    │  13.21% │
-└───────────┴─────────┘
-┌───────────┬─────────┐
-│ Metric    │ Value   │
-├───────────┼─────────┤
-│ P@10     │  10.26% │
-│ R@10     │  12.52% │
-│ MRR@10   │  13.98% │
-│ mAP@10   │  13.19% │
-└───────────┴─────────┘

@@ -18,6 +18,7 @@ from torchmetrics.functional.pairwise import pairwise_cosine_similarity
 
 from read_posters import get_all_poster
 from poster_manipulation import extract_features
+from feature_extractor import extract_feat_blip, extract_feat_mclip
 
 import config
 
@@ -184,6 +185,7 @@ def get_expert_labels(model,task):
     else:
         raise Exception('No such a task.')
     return index
+
 def plot_examples(model,task,images,texts,k=5,seed=42,device=0):
     features=extract_features({'images':images,'texts':texts},model,device=device)
     img_embed,cap_embed=features['image features'].cpu(),features['text features'].cpu()
@@ -198,6 +200,8 @@ def plot_examples(model,task,images,texts,k=5,seed=42,device=0):
         cosine=cosine.T
 
     vals,ids=torch.topk(cosine,k=k,dim=1)
+    print(f"Average similarity for task {task}: {vals.mean(dim=1)}")
+    print(f"Total average similarity: {vals.mean()}")
     
     if task=='img2txt':
         nrow=len(images)
@@ -275,19 +279,28 @@ if __name__=='__main__':
         with open(path,'w') as f:
             json.dump({'img_ids':img_ids,'txt_ids':txt_ids},f)
 
-    print(len(img_ids))
-    print(len(txt_ids))
+    discard_img_ids=[idx for idx in range(len(images)) if idx not in img_ids]
+    discard_txt_ids=[idx for idx in range(len(article['clean_data'])) if idx not in txt_ids]
+
+    print(f"Retained {len(img_ids)} images and {len(txt_ids)} texts.")
+    print(f"Discarded {len(discard_img_ids)} images and {len(discard_txt_ids)} texts.")
+
     
     for task in ['img2txt','txt2img']:
         if task=='img2txt':
             np.random.seed(6*seed)
             rand_img_ids=np.random.choice(img_ids,n_examples,replace=False)
+            txt_ids = discard_txt_ids #for discarded samples
             rand_txt_ids=np.random.choice(txt_ids,1000,replace=False)
             article_subset = [re.sub(r'[\r\n]+',' ',article['clean_data'][int(idx)]) for idx in rand_txt_ids]
         else:
             np.random.seed(8*seed)
-            rand_img_ids=np.random.choice(img_ids,1000,replace=False)
             rand_txt_ids=np.random.choice(txt_ids,n_examples,replace=False)
+            img_ids = discard_img_ids # for discarded samples
+            try:
+                rand_img_ids=np.random.choice(img_ids,1000,replace=False)
+            except ValueError:
+                rand_img_ids=np.random.choice(img_ids,len(img_ids),replace=False)
             subset = [re.sub(r'[\r\n]+',' ',article['metadata'][int(idx)]) for idx in rand_txt_ids]
             tokenizer = AutoTokenizer.from_pretrained(config.qwen)
             qwen_model = AutoModelForCausalLM.from_pretrained(config.qwen,
@@ -307,8 +320,6 @@ if __name__=='__main__':
                 ]
                 response = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
                 article_subset.append(response)
-                print(response)
+                # print(response)
                 
-
-
         plot_examples(args.model,task,[images[int(idx)] for idx in rand_img_ids],article_subset,seed=seed,device=args.device)

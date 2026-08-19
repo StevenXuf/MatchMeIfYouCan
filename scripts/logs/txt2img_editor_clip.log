@@ -1,51 +1,0 @@
-[nltk_data] Downloading package stopwords to
-[nltk_data]     /home/users/u101139/nltk_data...
-[nltk_data]   Package stopwords is already up-to-date!
-[nltk_data] Downloading package punkt to
-[nltk_data]     /home/users/u101139/nltk_data...
-[nltk_data]   Package punkt is already up-to-date!
-[nltk_data] Downloading package punkt_tab to
-[nltk_data]     /home/users/u101139/nltk_data...
-[nltk_data]   Package punkt_tab is already up-to-date!
-INFO 11-02 20:00:55 [__init__.py:235] Automatically detected platform cuda.
-You are a helpful assistant specialized in cleaning and normalizing metadata.            Your job is to standardize information, fix formatting issues, remove extraneous symbols and correct any capitalization errors.            In principle, you should only fix problems like an professional editor and stick to metadata as much as possible without modifying other parts of the metadata. If the metadata is empty, the cleaned data should also be empty.            I will give you some texts of different lengths and you need to clean these data.            Return only the cleaned text in a clear and structured form.
-nuclear accidents
-nuclear waste
-protest
-environmentalism
-path ../data/impresso/subset/processed_batch_clean
-Whole dataset has been processed. Terminated.
-16
-16
-  0%|          | 0/43 [00:00<?, ?it/s]  2%|▏         | 1/43 [00:00<00:10,  4.19it/s]  5%|▍         | 2/43 [00:00<00:08,  4.63it/s] 19%|█▊        | 8/43 [00:00<00:01, 18.17it/s] 26%|██▌       | 11/43 [00:00<00:02, 15.14it/s] 33%|███▎      | 14/43 [00:00<00:01, 17.80it/s] 40%|███▉      | 17/43 [00:01<00:01, 19.31it/s] 49%|████▉     | 21/43 [00:01<00:01, 19.46it/s] 56%|█████▌    | 24/43 [00:01<00:01, 18.73it/s] 63%|██████▎   | 27/43 [00:03<00:03,  4.92it/s] 67%|██████▋   | 29/43 [00:03<00:02,  5.86it/s] 74%|███████▍  | 32/43 [00:03<00:01,  7.81it/s] 81%|████████▏ | 35/43 [00:03<00:00, 10.12it/s] 91%|█████████ | 39/43 [00:03<00:00, 13.63it/s] 98%|█████████▊| 42/43 [00:03<00:00, 15.53it/s]100%|██████████| 43/43 [00:03<00:00, 11.38it/s]
-  0%|          | 0/74 [00:00<?, ?it/s]  4%|▍         | 3/74 [00:00<00:02, 26.96it/s]  9%|▉         | 7/74 [00:00<00:01, 34.29it/s] 15%|█▍        | 11/74 [00:00<00:02, 30.23it/s] 20%|██        | 15/74 [00:00<00:02, 23.40it/s] 24%|██▍       | 18/74 [00:00<00:02, 22.40it/s] 28%|██▊       | 21/74 [00:00<00:02, 22.83it/s] 32%|███▏      | 24/74 [00:01<00:02, 21.90it/s] 36%|███▋      | 27/74 [00:01<00:02, 22.40it/s] 41%|████      | 30/74 [00:01<00:01, 24.11it/s] 46%|████▌     | 34/74 [00:01<00:01, 24.60it/s] 50%|█████     | 37/74 [00:01<00:01, 19.22it/s] 54%|█████▍    | 40/74 [00:01<00:01, 19.59it/s] 58%|█████▊    | 43/74 [00:01<00:01, 20.85it/s] 62%|██████▏   | 46/74 [00:02<00:01, 22.11it/s] 66%|██████▌   | 49/74 [00:02<00:01, 21.27it/s] 73%|███████▎  | 54/74 [00:02<00:01, 19.90it/s] 78%|███████▊  | 58/74 [00:02<00:00, 21.90it/s] 82%|████████▏ | 61/74 [00:02<00:00, 21.94it/s] 86%|████████▋ | 64/74 [00:02<00:00, 21.68it/s] 91%|█████████ | 67/74 [00:03<00:00, 21.48it/s] 95%|█████████▍| 70/74 [00:03<00:00, 19.60it/s] 99%|█████████▊| 73/74 [00:03<00:00, 17.37it/s]100%|██████████| 74/74 [00:03<00:00, 21.50it/s]
-  0%|          | 0/43 [00:00<?, ?it/s] 16%|█▋        | 7/43 [00:00<00:00, 67.45it/s] 84%|████████▎ | 36/43 [00:00<00:00, 193.42it/s]100%|██████████| 43/43 [00:00<00:00, 186.24it/s]
-  0%|          | 0/74 [00:00<?, ?it/s] 39%|███▉      | 29/74 [00:00<00:00, 283.86it/s] 81%|████████  | 60/74 [00:00<00:00, 295.54it/s]100%|██████████| 74/74 [00:00<00:00, 296.40it/s]
-Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
-**********clip**********
-**********txt2img**********
-torch.Size([117, 22])
-┌───────────┬─────────┐
-│ Metric    │ Value   │
-├───────────┼─────────┤
-│ P@1      │  11.97% │
-│ R@1      │   1.30% │
-│ MRR@1    │  11.97% │
-│ mAP@1    │  11.97% │
-└───────────┴─────────┘
-┌───────────┬─────────┐
-│ Metric    │ Value   │
-├───────────┼─────────┤
-│ P@5      │  10.60% │
-│ R@5      │   6.50% │
-│ MRR@5    │  16.05% │
-│ mAP@5    │  14.58% │
-└───────────┴─────────┘
-┌───────────┬─────────┐
-│ Metric    │ Value   │
-├───────────┼─────────┤
-│ P@10     │  10.26% │
-│ R@10     │  12.69% │
-│ MRR@10   │  16.40% │
-│ mAP@10   │  14.06% │
-└───────────┴─────────┘

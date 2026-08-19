@@ -1,52 +1,0 @@
-[nltk_data] Downloading package stopwords to
-[nltk_data]     /home/users/u101139/nltk_data...
-[nltk_data]   Package stopwords is already up-to-date!
-[nltk_data] Downloading package punkt to
-[nltk_data]     /home/users/u101139/nltk_data...
-[nltk_data]   Package punkt is already up-to-date!
-[nltk_data] Downloading package punkt_tab to
-[nltk_data]     /home/users/u101139/nltk_data...
-[nltk_data]   Package punkt_tab is already up-to-date!
-INFO 11-02 20:00:55 [__init__.py:235] Automatically detected platform cuda.
-You are a helpful assistant specialized in cleaning and normalizing metadata.            Your job is to standardize information, fix formatting issues, remove extraneous symbols and correct any capitalization errors.            In principle, you should only fix problems like an professional editor and stick to metadata as much as possible without modifying other parts of the metadata. If the metadata is empty, the cleaned data should also be empty.            I will give you some texts of different lengths and you need to clean these data.            Return only the cleaned text in a clear and structured form.
-nuclear accidents
-nuclear waste
-protest
-environmentalism
-path ../data/impresso/subset/processed_batch_clean
-Whole dataset has been processed. Terminated.
-16
-16
-  0%|          | 0/43 [00:00<?, ?it/s]  2%|▏         | 1/43 [00:00<00:10,  4.19it/s]  5%|▍         | 2/43 [00:00<00:08,  4.63it/s] 19%|█▊        | 8/43 [00:00<00:01, 18.14it/s] 26%|██▌       | 11/43 [00:00<00:02, 15.12it/s] 33%|███▎      | 14/43 [00:00<00:01, 17.77it/s] 40%|███▉      | 17/43 [00:01<00:01, 19.28it/s] 49%|████▉     | 21/43 [00:01<00:01, 19.42it/s] 56%|█████▌    | 24/43 [00:01<00:01, 18.67it/s] 63%|██████▎   | 27/43 [00:03<00:03,  4.89it/s] 67%|██████▋   | 29/43 [00:03<00:02,  5.82it/s] 74%|███████▍  | 32/43 [00:03<00:01,  7.76it/s] 81%|████████▏ | 35/43 [00:03<00:00, 10.06it/s] 91%|█████████ | 39/43 [00:03<00:00, 13.55it/s] 98%|█████████▊| 42/43 [00:03<00:00, 15.46it/s]100%|██████████| 43/43 [00:03<00:00, 11.33it/s]
-  0%|          | 0/74 [00:00<?, ?it/s]  4%|▍         | 3/74 [00:00<00:02, 26.76it/s]  9%|▉         | 7/74 [00:00<00:01, 34.05it/s] 15%|█▍        | 11/74 [00:00<00:02, 30.05it/s] 20%|██        | 15/74 [00:00<00:02, 23.21it/s] 24%|██▍       | 18/74 [00:00<00:02, 22.23it/s] 28%|██▊       | 21/74 [00:00<00:02, 22.67it/s] 32%|███▏      | 24/74 [00:01<00:02, 21.77it/s] 36%|███▋      | 27/74 [00:01<00:02, 22.27it/s] 41%|████      | 30/74 [00:01<00:01, 23.95it/s] 46%|████▌     | 34/74 [00:01<00:01, 24.43it/s] 50%|█████     | 37/74 [00:01<00:01, 19.16it/s] 54%|█████▍    | 40/74 [00:01<00:01, 19.53it/s] 58%|█████▊    | 43/74 [00:01<00:01, 20.75it/s] 62%|██████▏   | 46/74 [00:02<00:01, 22.00it/s] 66%|██████▌   | 49/74 [00:02<00:01, 21.16it/s] 73%|███████▎  | 54/74 [00:02<00:01, 19.75it/s] 78%|███████▊  | 58/74 [00:02<00:00, 21.73it/s] 82%|████████▏ | 61/74 [00:02<00:00, 21.78it/s] 86%|████████▋ | 64/74 [00:02<00:00, 21.52it/s] 91%|█████████ | 67/74 [00:03<00:00, 21.32it/s] 95%|█████████▍| 70/74 [00:03<00:00, 19.46it/s] 97%|█████████▋| 72/74 [00:03<00:00, 15.91it/s]100%|██████████| 74/74 [00:03<00:00, 21.36it/s]
-  0%|          | 0/43 [00:00<?, ?it/s] 16%|█▋        | 7/43 [00:00<00:00, 67.75it/s] 84%|████████▎ | 36/43 [00:00<00:00, 195.61it/s]100%|██████████| 43/43 [00:00<00:00, 188.43it/s]
-  0%|          | 0/74 [00:00<?, ?it/s] 39%|███▉      | 29/74 [00:00<00:00, 281.72it/s] 81%|████████  | 60/74 [00:00<00:00, 293.30it/s]100%|██████████| 74/74 [00:00<00:00, 294.20it/s]
-**********blip**********
-reshape position embedding from 576 to 196
-load checkpoint from https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_retrieval_coco.pth
-**********txt2img**********
-torch.Size([117, 22])
-┌───────────┬─────────┐
-│ Metric    │ Value   │
-├───────────┼─────────┤
-│ P@1      │  11.97% │
-│ R@1      │   2.01% │
-│ MRR@1    │  11.97% │
-│ mAP@1    │  11.97% │
-└───────────┴─────────┘
-┌───────────┬─────────┐
-│ Metric    │ Value   │
-├───────────┼─────────┤
-│ P@5      │  11.28% │
-│ R@5      │   8.08% │
-│ MRR@5    │  18.36% │
-│ mAP@5    │  17.09% │
-└───────────┴─────────┘
-┌───────────┬─────────┐
-│ Metric    │ Value   │
-├───────────┼─────────┤
-│ P@10     │   9.83% │
-│ R@10     │  13.80% │
-│ MRR@10   │  18.36% │
-│ mAP@10   │  15.56% │
-└───────────┴─────────┘

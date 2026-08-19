@@ -6,12 +6,10 @@ import spacy
 import numpy as np
 import logging
 
-from datasets import Dataset
 from tqdm import tqdm
 from matplotlib.ticker import MaxNLocator
 from wordcloud import WordCloud
 from transformers import AutoModel,AutoTokenizer
-from termcolor import colored
 
 import nltk
 nltk.download('stopwords')

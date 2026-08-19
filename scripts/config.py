@@ -48,7 +48,7 @@ deepseek='deepseek-ai/DeepSeek-R1-Distill-Llama-8B'
 model_translate="Helsinki-NLP/opus-mt-de-en"
 qwen='Qwen/Qwen2.5-7B-Instruct-1M'
 
-OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
+# OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
 
 top_k=10
 

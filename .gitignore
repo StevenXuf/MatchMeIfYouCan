@@ -1,6 +1,9 @@
 __pycache__/
-*.pyc
-.ipynb_checkpoints/
+*.ipynb
+*.log
 
 # Ignore everything in data/
-/data/**/impresso
+data/**/impresso/
+logs/
+figures/
+misc/

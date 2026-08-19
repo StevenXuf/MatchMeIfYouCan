@@ -1,54 +1,0 @@
-[nltk_data] Downloading package stopwords to
-[nltk_data]     /home/users/u101139/nltk_data...
-[nltk_data]   Package stopwords is already up-to-date!
-[nltk_data] Downloading package punkt to
-[nltk_data]     /home/users/u101139/nltk_data...
-[nltk_data]   Package punkt is already up-to-date!
-[nltk_data] Downloading package punkt_tab to
-[nltk_data]     /home/users/u101139/nltk_data...
-[nltk_data]   Package punkt_tab is already up-to-date!
-INFO 11-11 18:03:07 [__init__.py:235] Automatically detected platform cuda.
-You are a helpful assistant specialized in multilingual translation.            Your job is to translate the given meta text to fluent and accurate English, while preserving the original meaning.            Note that the meta text might have formatting issues, extraneous symbols, and other common OCR errors, thus you must fix these problems like a professional translator in such cases. If the metadata is empty, the translation should also be empty. If the metadata is already in English, return the original English after fixing errors in text.            I will give you some texts of different lengths and you need to translate these data to English.            Return only the translated text in English in a clear and structured form.
-nuclear accidents
-nuclear waste
-protest
-environmentalism
-path ../data/impresso/subset/processed_batch_translate
-Whole dataset has been processed. Terminated.
-16
-16
-  0%|          | 0/43 [00:00<?, ?it/s]  2%|▏         | 1/43 [00:00<00:12,  3.30it/s]  5%|▍         | 2/43 [00:00<00:11,  3.65it/s] 16%|█▋        | 7/43 [00:00<00:02, 14.50it/s] 23%|██▎       | 10/43 [00:00<00:01, 17.66it/s] 30%|███       | 13/43 [00:00<00:01, 19.68it/s] 37%|███▋      | 16/43 [00:01<00:01, 21.47it/s] 44%|████▍     | 19/43 [00:01<00:01, 21.32it/s] 51%|█████     | 22/43 [00:01<00:01, 18.65it/s] 58%|█████▊    | 25/43 [00:01<00:00, 18.37it/s] 65%|██████▌   | 28/43 [00:01<00:00, 19.51it/s] 72%|███████▏  | 31/43 [00:01<00:00, 20.88it/s] 81%|████████▏ | 35/43 [00:01<00:00, 22.69it/s] 91%|█████████ | 39/43 [00:02<00:00, 23.91it/s] 98%|█████████▊| 42/43 [00:02<00:00, 23.53it/s]100%|██████████| 43/43 [00:02<00:00, 18.32it/s]
-  0%|          | 0/74 [00:00<?, ?it/s]  4%|▍         | 3/74 [00:00<00:02, 25.02it/s]  9%|▉         | 7/74 [00:00<00:02, 32.86it/s] 15%|█▍        | 11/74 [00:00<00:02, 27.98it/s] 19%|█▉        | 14/74 [00:00<00:02, 26.97it/s] 23%|██▎       | 17/74 [00:00<00:02, 22.86it/s] 27%|██▋       | 20/74 [00:00<00:02, 20.63it/s] 31%|███       | 23/74 [00:01<00:02, 20.54it/s] 35%|███▌      | 26/74 [00:01<00:02, 21.89it/s] 41%|████      | 30/74 [00:01<00:01, 24.13it/s] 46%|████▌     | 34/74 [00:01<00:01, 24.82it/s] 50%|█████     | 37/74 [00:01<00:01, 19.45it/s] 54%|█████▍    | 40/74 [00:01<00:01, 19.43it/s] 58%|█████▊    | 43/74 [00:01<00:01, 18.41it/s] 62%|██████▏   | 46/74 [00:02<00:01, 20.06it/s] 66%|██████▌   | 49/74 [00:02<00:01, 19.49it/s] 72%|███████▏  | 53/74 [00:02<00:00, 23.44it/s] 76%|███████▌  | 56/74 [00:02<00:00, 19.87it/s] 80%|███████▉  | 59/74 [00:02<00:00, 21.14it/s] 84%|████████▍ | 62/74 [00:02<00:00, 20.93it/s] 88%|████████▊ | 65/74 [00:03<00:00, 20.05it/s] 92%|█████████▏| 68/74 [00:03<00:00, 21.42it/s] 96%|█████████▌| 71/74 [00:03<00:00, 17.69it/s] 99%|█████████▊| 73/74 [00:03<00:00, 17.00it/s]100%|██████████| 74/74 [00:03<00:00, 20.94it/s]
-  0%|          | 0/43 [00:00<?, ?it/s] 16%|█▋        | 7/43 [00:00<00:00, 69.46it/s] 77%|███████▋  | 33/43 [00:00<00:00, 178.51it/s]100%|██████████| 43/43 [00:00<00:00, 180.30it/s]
-  0%|          | 0/74 [00:00<?, ?it/s] 31%|███       | 23/74 [00:00<00:00, 228.87it/s] 70%|███████   | 52/74 [00:00<00:00, 261.42it/s]100%|██████████| 74/74 [00:00<00:00, 267.72it/s]
-Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
-**********mblip**********
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [01:52<01:52, 112.88s/it]Loading checkpoint shards: 100%|██████████| 2/2 [03:37<00:00, 108.07s/it]Loading checkpoint shards: 100%|██████████| 2/2 [03:37<00:00, 108.80s/it]
-Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
-Expanding inputs for image tokens in BLIP-2 should be done in processing. Please follow instruction here (https://gist.github.com/zucchini-nlp/e9f20b054fa322f84ac9311d9ab67042) to update your BLIP-2 model. Using processors without these attributes in the config is deprecated and will throw an error in v4.50.
-**********txt2img**********
-torch.Size([117, 22])
-┌───────────┬─────────┐
-│ Metric    │ Value   │
-├───────────┼─────────┤
-│ P@1      │   5.13% │
-│ R@1      │   0.66% │
-│ MRR@1    │   5.13% │
-│ mAP@1    │   5.13% │
-└───────────┴─────────┘
-┌───────────┬─────────┐
-│ Metric    │ Value   │
-├───────────┼─────────┤
-│ P@5      │   5.30% │
-│ R@5      │   3.23% │
-│ MRR@5    │   8.89% │
-│ mAP@5    │   8.95% │
-└───────────┴─────────┘
-┌───────────┬─────────┐
-│ Metric    │ Value   │
-├───────────┼─────────┤
-│ P@10     │   5.21% │
-│ R@10     │   6.09% │
-│ MRR@10   │   9.44% │
-│ mAP@10   │   9.86% │
-└───────────┴─────────┘

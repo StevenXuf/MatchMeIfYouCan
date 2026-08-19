@@ -5,7 +5,7 @@ from multilingual_clip import pt_multilingual_clip
 import transformers
 from torchvision.transforms import v2
 
-sys.path.append('/home/fxu/alignment/BLIP_Official')
+sys.path.append('/home/fxu/Alignment/BLIP_Official')
 
 from models.blip_itm import blip_itm
 

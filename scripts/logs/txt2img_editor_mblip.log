@@ -1,63 +1,0 @@
-[nltk_data] Downloading package stopwords to
-[nltk_data]     /home/users/u101139/nltk_data...
-[nltk_data]   Package stopwords is already up-to-date!
-[nltk_data] Downloading package punkt to
-[nltk_data]     /home/users/u101139/nltk_data...
-[nltk_data]   Package punkt is already up-to-date!
-[nltk_data] Downloading package punkt_tab to
-[nltk_data]     /home/users/u101139/nltk_data...
-[nltk_data]   Package punkt_tab is already up-to-date!
-INFO 11-11 18:03:07 [__init__.py:235] Automatically detected platform cuda.
-You are a helpful assistant specialized in cleaning and normalizing metadata.            Your job is to standardize information, fix formatting issues, remove extraneous symbols and correct any capitalization errors.            In principle, you should only fix problems like an professional editor and stick to metadata as much as possible without modifying other parts of the metadata. If the metadata is empty, the cleaned data should also be empty.            I will give you some texts of different lengths and you need to clean these data.            Return only the cleaned text in a clear and structured form.
-nuclear accidents
-nuclear waste
-protest
-environmentalism
-path ../data/impresso/subset/processed_batch_clean
-Whole dataset has been processed. Terminated.
-16
-16
-  0%|          | 0/43 [00:00<?, ?it/s]  2%|▏         | 1/43 [00:00<00:12,  3.38it/s]  5%|▍         | 2/43 [00:00<00:09,  4.15it/s] 19%|█▊        | 8/43 [00:00<00:02, 16.79it/s] 26%|██▌       | 11/43 [00:00<00:02, 14.45it/s] 33%|███▎      | 14/43 [00:01<00:01, 17.11it/s] 40%|███▉      | 17/43 [00:01<00:01, 18.68it/s] 49%|████▉     | 21/43 [00:01<00:01, 18.96it/s] 56%|█████▌    | 24/43 [00:01<00:01, 18.33it/s] 63%|██████▎   | 27/43 [00:03<00:03,  4.83it/s] 67%|██████▋   | 29/43 [00:03<00:02,  5.75it/s] 74%|███████▍  | 32/43 [00:03<00:01,  7.67it/s] 81%|████████▏ | 35/43 [00:03<00:00,  9.94it/s] 91%|█████████ | 39/43 [00:03<00:00, 13.40it/s] 98%|█████████▊| 42/43 [00:03<00:00, 15.28it/s]100%|██████████| 43/43 [00:03<00:00, 11.05it/s]
-  0%|          | 0/74 [00:00<?, ?it/s]  4%|▍         | 3/74 [00:00<00:02, 26.79it/s]  9%|▉         | 7/74 [00:00<00:01, 33.97it/s] 15%|█▍        | 11/74 [00:00<00:02, 29.74it/s] 20%|██        | 15/74 [00:00<00:02, 22.93it/s] 24%|██▍       | 18/74 [00:00<00:02, 21.96it/s] 28%|██▊       | 21/74 [00:00<00:02, 22.36it/s] 32%|███▏      | 24/74 [00:01<00:02, 21.48it/s] 36%|███▋      | 27/74 [00:01<00:02, 22.00it/s] 41%|████      | 30/74 [00:01<00:01, 23.67it/s] 46%|████▌     | 34/74 [00:01<00:01, 24.16it/s] 50%|█████     | 37/74 [00:01<00:01, 18.94it/s] 54%|█████▍    | 40/74 [00:01<00:01, 19.32it/s] 58%|█████▊    | 43/74 [00:01<00:01, 20.62it/s] 62%|██████▏   | 46/74 [00:02<00:01, 21.91it/s] 66%|██████▌   | 49/74 [00:02<00:01, 21.09it/s] 73%|███████▎  | 54/74 [00:02<00:01, 19.65it/s] 78%|███████▊  | 58/74 [00:02<00:00, 21.56it/s] 82%|████████▏ | 61/74 [00:02<00:00, 21.63it/s] 86%|████████▋ | 64/74 [00:02<00:00, 19.12it/s] 91%|█████████ | 67/74 [00:03<00:00, 18.06it/s] 95%|█████████▍| 70/74 [00:03<00:00, 16.85it/s] 97%|█████████▋| 72/74 [00:03<00:00, 14.16it/s]100%|██████████| 74/74 [00:03<00:00, 20.37it/s]
-  0%|          | 0/43 [00:00<?, ?it/s] 65%|██████▌   | 28/43 [00:00<00:00, 279.51it/s]100%|██████████| 43/43 [00:00<00:00, 285.99it/s]
-  0%|          | 0/74 [00:00<?, ?it/s] 39%|███▉      | 29/74 [00:00<00:00, 287.92it/s] 81%|████████  | 60/74 [00:00<00:00, 298.80it/s]100%|██████████| 74/74 [00:00<00:00, 299.86it/s]
-Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
-**********mblip**********
-Traceback (most recent call last):
-  File "/mnt/tier2/users/u101139/NuclearAlignment/scripts/cross_modal_retrieval.py", line 100, in <module>
-    fire.Fire(main)
-  File "/mnt/tier2/project/p200630/my_env/lib/python3.11/site-packages/fire/core.py", line 135, in Fire
-    component_trace = _Fire(component, args, parsed_flag_args, context, name)
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/tier2/project/p200630/my_env/lib/python3.11/site-packages/fire/core.py", line 468, in _Fire
-    component, remaining_args = _CallAndUpdateTrace(
-                                ^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/tier2/project/p200630/my_env/lib/python3.11/site-packages/fire/core.py", line 684, in _CallAndUpdateTrace
-    component = fn(*varargs, **kwargs)
-                ^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/tier2/users/u101139/NuclearAlignment/scripts/cross_modal_retrieval.py", line 96, in main
-    compute_poster_article_metrics(system_role,model_name,task,is_meta=meta)
-  File "/mnt/tier2/users/u101139/NuclearAlignment/scripts/cross_modal_retrieval.py", line 73, in compute_poster_article_metrics
-    features=extract_features({'images':poster['images'],'texts':denest(articles)},model_name)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/tier2/users/u101139/NuclearAlignment/scripts/poster_manipulation.py", line 179, in extract_features
-    features['image features'],features['text features']=extract_feat_mblip(imgs,txts,device)
-                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/tier2/project/p200630/my_env/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/tier2/users/u101139/NuclearAlignment/scripts/feature_extractor.py", line 66, in extract_feat_mblip
-    model = Blip2ForConditionalGeneration.from_pretrained("Gregor/mblip-mt0-xl", device_map=device, torch_dtype=torch.bfloat16)
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/tier2/project/p200630/my_env/lib/python3.11/site-packages/transformers/modeling_utils.py", line 311, in _wrapper
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/tier2/project/p200630/my_env/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4839, in from_pretrained
-    ) = cls._load_pretrained_model(
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/tier2/project/p200630/my_env/lib/python3.11/site-packages/transformers/modeling_utils.py", line 5260, in _load_pretrained_model
-    caching_allocator_warmup(model_to_load, expanded_device_map, hf_quantizer)
-  File "/mnt/tier2/project/p200630/my_env/lib/python3.11/site-packages/transformers/modeling_utils.py", line 5874, in caching_allocator_warmup
-    _ = torch.empty(byte_count // factor, dtype=torch.float16, device=device, requires_grad=False)
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 10.92 GiB. GPU 0 has a total capacity of 39.49 GiB of which 5.11 GiB is free. Including non-PyTorch memory, this process has 414.00 MiB memory in use. Process 4641 has 11.32 GiB memory in use. Process 4638 has 11.32 GiB memory in use. Process 4640 has 11.32 GiB memory in use. Of the allocated memory 0 bytes is allocated by PyTorch, and 0 bytes is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
