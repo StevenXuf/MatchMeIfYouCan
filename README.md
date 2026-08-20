@@ -4,7 +4,7 @@ Linking historical texts and images
 ### Experiment Pipeline
 ![Experiment Pipline](./assets/pipeline.png)
 
-If you find this work useful, please cite our TMLR paper:
+If you find this work useful, please cite our paper:
 
 ```bibtex
 @article{10.1093/llc/fqag088,
