@@ -8,7 +8,7 @@ Linking historical texts and images
 If you find this work useful, please cite our paper:
 
 ```bibtex
-@article{10.1093/llc/fqag088,
+@article{xu2026aligning,
     author  = {Xu, Fan and Düring, Marten and Leiva, Luis A},
     title   = {Match Me if You Can: Aligning Historical Posters and Newspaper articles via Multimodal Deep Learning},
     journal = {Digital Scholarship in the Humanities},
