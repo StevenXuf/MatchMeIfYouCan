@@ -6,7 +6,7 @@ Research code for linking historical posters from LAKA and newspaper articles fr
 
 **Start with [`scripts/intra_modal_retrieval.py`](scripts/intra_modal_retrieval.py)**, the main experiment entry point for text retrieval. It compares theme queries against newspaper titles or articles using bag-of-words, TF-IDF, CLIP, or BLIP. Supporting scripts cover poster analysis, cross-modal retrieval, and text preprocessing.
 
-> **Reproduction status:** This checkout contains research scripts with missing data, inconsistent interfaces, and machine-specific paths. Follow the setup and data instructions below, and review [Known execution issues](#known-execution-issues) before running experiments. Installing dependencies alone does not make the main script executable.
+> **Reproduction status:** This checkout contains research scripts with missing data, inconsistent interfaces, and machine-specific paths. Follow the setup and data instructions below before running experiments. Installing dependencies alone does not make the main script executable.
 
 ## Experiment pipeline
 
@@ -130,7 +130,7 @@ For your experiment, set these values in the script's `__main__` block and set `
 | Setting | Values | Meaning |
 | --- | --- | --- |
 | `method` | `bow`, `tfidf`, `clip`, `blip` | Count/TF-IDF vectors or pretrained text features, ranked by cosine similarity. |
-| `query` | `queries_de`, `queries_en`, `prompts_de`, `prompts_en` | German/English themes or sentence prompts. See the config-name mismatch below. |
+| `query` | `queries_de`, `queries_en`, `prompts_de`, `prompts_en` | German/English themes or sentence prompts. |
 | `corpus` | `titles`, `articles` | Retrieve newspaper titles or full articles. |
 | `text_transform` | `False`, `True` | Intended to enable LLM transformation of the corpus; the current transformation call needs reconciliation. |
 | `lemmatization` | `False`, `True` | Apply German spaCy lemmatization to the retrieval corpus. |
@@ -138,7 +138,7 @@ For your experiment, set these values in the script's `__main__` block and set `
 
 The feature module provides M-CLIP and mBLIP, but the intra-modal metric function only implements CLIP and BLIP. Do not select `mclip` or `mblip` for this entry point without adding the missing dispatch.
 
-For a first baseline, use `bow` or `tfidf` with German themes and untransformed articles **after resolving the execution issues below**. For comparisons with English queries, prepare the corresponding English translations or summaries; choosing `queries_en` alone does not translate the corpus.
+For a first baseline, use `bow` or `tfidf` with German themes and untransformed articles after preparing the data and reconciling the script interfaces. For comparisons with English queries, prepare the corresponding English translations or summaries; choosing `queries_en` alone does not translate the corpus.
 
 Once the dependencies, input data, and interfaces are ready, launch the selected main experiment and retain its output:
 
@@ -164,9 +164,8 @@ Existing caches are reused by row count, without checking input contents, model,
 
 Its current `__main__` block instead runs **poster–caption retrieval with translated captions**, using positional model and `-t/--task` arguments. The Fire entry point for poster–article retrieval is commented out. `automaticeval.sh` therefore runs poster–caption comparisons; it does not launch all poster–article experiments. Call the appropriate function after preparing its inputs and dependencies.
 
-<a name="known-execution-issues"></a>
-<details>
-<summary>Known execution issues</summary>
+<!--
+## Known execution issues
 
 These issues are present in the checked-in code and need local reconciliation for reproduction:
 
@@ -183,7 +182,7 @@ These issues are present in the checked-in code and need local reconciliation fo
 
 The supplied Slurm job script contains institution-specific accounts, paths, and modules. Treat it as an environment example; adapt it before submitting jobs.
 
-</details>
+-->
 
 ## Citation
 
