@@ -164,7 +164,9 @@ Existing caches are reused by row count, without checking input contents, model,
 
 Its current `__main__` block instead runs **poster–caption retrieval with translated captions**, using positional model and `-t/--task` arguments. The Fire entry point for poster–article retrieval is commented out. `automaticeval.sh` therefore runs poster–caption comparisons; it does not launch all poster–article experiments. Call the appropriate function after preparing its inputs and dependencies.
 
-## Known execution issues
+<a name="known-execution-issues"></a>
+<details>
+<summary>Known execution issues</summary>
 
 These issues are present in the checked-in code and need local reconciliation for reproduction:
 
@@ -180,6 +182,8 @@ These issues are present in the checked-in code and need local reconciliation fo
 **Metric interpretation:** The intra-modal metric loops use `range(1, N)[start:end]` for relevant article indices, which omits the final candidate. The loader also returns related and unrelated groups together, while those loops treat each corpus group as the relevant set for the corresponding query. Review index boundaries and label alignment before using those scores as evidence of paper reproduction. The cross-modal metric helper uses explicit relevance targets and additionally reports MRR and mAP.
 
 The supplied Slurm job script contains institution-specific accounts, paths, and modules. Treat it as an environment example; adapt it before submitting jobs.
+
+</details>
 
 ## Citation
 
